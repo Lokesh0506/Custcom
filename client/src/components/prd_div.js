@@ -5,7 +5,7 @@ import { H1, H2, H3, IMG, P, A } from './tags';
 import Axios from 'axios';
 
 
-const PRD_DIV = (props) => {
+const PrdDiv = (props) => {
 
   const [data, setData] = useState([]);
 
@@ -31,4 +31,4 @@ const PRD_DIV = (props) => {
        )
  };
 
- export default PRD_DIV;
+ export default PrdDiv;
