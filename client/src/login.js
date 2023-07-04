@@ -39,8 +39,10 @@ const Login = () => {
             else if (response.data==="incorrectPassword") {
                 alert("Incorrect Password");
             }
-            else{alert("vanakko da");
-          console.log(response);}
+            else{
+              console.log("error:");
+              console.log(response);
+             }
 
           } catch (error) {
             console.log("come to error");
@@ -80,7 +82,7 @@ const Login = () => {
             <button type="submit" className="btn btn-primary">Login</button>
         </form>
     </div>
-    </div>
+     </div>
   );
 };
 
