@@ -5,6 +5,7 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 
@@ -17,62 +18,56 @@ app.listen(8080,(err)=>{
     }
 });
 
-
 app.post('/login', (req, res) => {
-  console.log("entered login server");
-  const usepass = mysql.createConnection({
+  const db = mysql.createConnection({
     user: "root",
     password: "root",
     host: "localhost",
     database: "admin"
   });
 
-  console.log(usepass);
-if(req.body.username ==="admin"){
-  usepass.query(`SELECT * FROM usepass WHERE username = '${req.body.username}'`, (err, response) => {
+  const response = {};
+
+  db.query('SELECT * FROM usepass WHERE username=? AND mobilenum=?',[req.body.username,req.body.mobilenumber], (err, dbres) => {
     if (err) {
       console.log(err);
-      res.status(500).send('Incorrect_username');
+      res.status(500).send('Internal Server Error');
       return;
     }
-    if(response[0].password===req.body.password){
-      res.send("toadmin");
+    if(req.body.username===""|dbres.length === 0){
+      res.send("invalidUsername");
       return;
     }
-    else{
-      res.send("incorrect_pass");
-      return;
+    if(req.body.username==="admin"){
+      if(dbres[0].password===req.body.password){
+        res.send("toAdmin");
+        return;
+      }else{
+        res.send("incorrectPassword");
+        return ;
+      }
     }
 
-});}
-else{
-  console.log("entered usecheck");
-  usepass.query(`SELECT * FROM usepass WHERE mobilenum ='${req.body.mobilenumber}' `, (err, response) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send('Incorrect_username');
-      return;
-    }
-    if(response[0].password===req.body.password){
-      res.send("touser");
+    else if(req.body.password===dbres[0].password){
+      res.send("toUser");
       return;
     }
     else{
-      res.send("incorrect_pass");
-      return;
-    }
+        res.send("incorrectPassword");
+        return ;
+      }
 
   });
-  
-}
 });
+
+
 
 app.get('/home', (req, res) => {
     const db = mysql.createConnection({
       user: "root",
       password: "root",
       host: "localhost",
-      database: "home_page"
+      database: "homepage"
     });
   
     const response = {};

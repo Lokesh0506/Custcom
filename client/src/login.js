@@ -21,23 +21,29 @@ const Login = () => {
               password,
               mobilenumber
             });
+            
+
+            if (response.data==='invalidUsername') {
+              alert("Invalid Username");
+          }
       
-            if (response==="toadmin") {
+            else if (response.data==="toAdmin") {
+                alert("ADMIN");
                 navigate('/admin');
             }
 
-            else if (response==="toadmin") {
+            else if (response.data==="toUser") {
                 navigate('/home',{mobilenumber});
             }
 
-            else if (response==="Incorrect_username") {
-                alert("Incorrect Username");
-            }
-
-            else if (response==="Incorrect_pass") {
+            else if (response.data==="incorrectPassword") {
                 alert("Incorrect Password");
             }
-            else{alert("vanakko da")}
+            else{
+              console.log("error:");
+              console.log(response);
+             }
+
           } catch (error) {
             console.log("come to error");
             console.error(error);
@@ -46,7 +52,8 @@ const Login = () => {
   
 
   return (
-    <div className='container'>
+    <div className='login_body'>
+    <div className='login_container'>
       
         <form onSubmit={handleSubmit}>
             <div className="header">
@@ -75,6 +82,7 @@ const Login = () => {
             <button type="submit" className="btn btn-primary">Login</button>
         </form>
     </div>
+     </div>
   );
 };
 
