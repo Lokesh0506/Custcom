@@ -1,0 +1,117 @@
+.prd_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .prd_row > * {
+    flex: 0 0 18%;
+
+  }
+
+.prd_div {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    width: 300px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .prd_div:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .prd_div #prd_img {
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10%;
+  }
+  
+  .prd_div .product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 8px;
+  }
+  
+  .prd_div .product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+  }
+  
+  .prd_div #prd_name {
+    padding-top: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 1px;
+    color: #333;
+  }
+  
+  .prd_div .price-section {
+    display: flex;
+    align-items: center;
+    margin-top: 0px;
+  }
+  
+  .prd_div .price-details {
+    padding-top: -10px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .prd_div .price-details p {
+    margin: 0;
+    margin-right: 5px; 
+  }
+  
+  .prd_div #prd_price {
+    display: inline;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+  }
+  
+  .prd_div #prd_mrp {
+    display: inline;
+    font-size: 20px;
+    color: red;
+  }
+  
+  .prd_div #prd_offer {
+    display: inline;
+    font-size: 15px;
+    color: #03c303;
+  }
+  
+  .prd_div button {
+    padding: 8px 16px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+   
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+  
+    bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .prd_div button:hover {
+    background-color: #45a049;
+  }
+  

@@ -82,9 +82,43 @@ app.get("/home", (req, res) => {
         res.status(500).send('Internal Server Error');
         return;
       }
-      
+
       response.body = bodyResult;
-      res.send(response);
+      
+
+      invdb.query('SELECT * FROM books ORDER BY RAND() LIMIT 5;', (err, invbook) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Internal Server Error');
+          return;
+
+        }
+       response.inv={};
+
+        response.inv.book = invbook;
+
+        invdb.query('SELECT * FROM electronic ORDER BY RAND() LIMIT 5;', (err, invelec) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+            return;
+          }
+
+          response.inv.electronic = invelec;
+
+          invdb.query('SELECT * FROM grocery ORDER BY RAND() LIMIT 5;', (err, invgroc) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send('Internal Server Error');
+              return;
+            }
+
+            response.inv.grocery = invgroc;
+
+            res.send(response);
+          });
+        });
+      });
     });
   });
 });
