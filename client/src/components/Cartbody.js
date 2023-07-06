@@ -11,6 +11,7 @@ const Cartbody = (props) => {
     Axios.get('http://localhost:8080/cart')
       .then(response => {
         setData(response.data);
+        console.log(data);
       })
       .catch(error => {
         console.log(error);
@@ -40,19 +41,20 @@ const Cartbody = (props) => {
             const { pname, price, authorname } = inventoryItem[0];
   
             return (
-              <div key={pid}>
+              <div key={pid} className='product'>
          
                 <IMG
                   src={setSrcprod(inventoryItem, pid)}
                   key={`${pid}-${index}`}
                 />
-                 <h2>{pname}</h2>
-                <h2>{price}</h2>
-                <h2>{authorname}</h2>
+              
+                 <h2 id="name">{pname}</h2>
+                <h2 id="price">{price}</h2>
+                <h2 id="author">{authorname}</h2>
               </div>
             );
           } else {
-            return null;
+            return <h1>Some error occured</h1>;
           }
         })
       )}
