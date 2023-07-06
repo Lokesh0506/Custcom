@@ -38,15 +38,15 @@ background-size: cover;
     background: none;
     
 }
-label{
+.login_container label{
 font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-size: 20px;
 }
-h2{
+.login_container h2{
 color:rgba(52, 12, 89, 0.959);
 padding: -20px;
 }
-input{
+.login_container input{
 margin-top:5px;
 font-size: 15px;
 padding: 5px;

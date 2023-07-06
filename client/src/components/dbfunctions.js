@@ -1,9 +1,10 @@
 
 
-const setStyle = (data,name) => {
+const setStyle = (data,name,opstyl) => {
     const element = data.find(obj => obj.id === name);
     if (element) {
       return {
+        ...opstyl,
         fontSize: element['font-size'],
         color: element.color,
         backgroundColor : element.bg_color,

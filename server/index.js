@@ -63,33 +63,74 @@ app.post('/login', (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    const db = mysql.createConnection({
-      user: "root",
-      password: "root",
-      host: "localhost",
-      database: "homepage"
-    });
-  
-    const response = {};
-  
-    db.query('SELECT * FROM header', (err, headerResult) => {
+  const db = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "homepage"
+  });
+
+  const invdb = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "inventory"
+  });
+
+  const response = {};
+
+  db.query('SELECT * FROM header', (err, headerResult) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    response.header = headerResult;
+
+    db.query('SELECT * FROM body', (err, bodyResult) => {
       if (err) {
         console.log(err);
         res.status(500).send('Internal Server Error');
         return;
       }
-      response.header = headerResult;
-  
-      db.query('SELECT * FROM body', (err, bodyResult) => {
+
+      response.body = bodyResult;
+      
+
+      invdb.query('SELECT * FROM books ORDER BY RAND() LIMIT 5;', (err, invbook) => {
         if (err) {
           console.log(err);
           res.status(500).send('Internal Server Error');
           return;
+
         }
-        
-        response.body = bodyResult;
-        res.send(response);
+       response.inv={};
+
+        response.inv.book = invbook;
+
+        invdb.query('SELECT * FROM electronic ORDER BY RAND() LIMIT 5;', (err, invelec) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+            return;
+          }
+
+          response.inv.electronic = invelec;
+
+          invdb.query('SELECT * FROM grocery ORDER BY RAND() LIMIT 5;', (err, invgroc) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send('Internal Server Error');
+              return;
+            }
+
+            response.inv.grocery = invgroc;
+
+            res.send(response);
+          });
+        });
       });
     });
   });
-  
+});
+
