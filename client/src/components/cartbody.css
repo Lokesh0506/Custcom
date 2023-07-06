@@ -1,0 +1,12 @@
+.Cartpage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding:50px;
+  }
+  
+  .Cartpage img {
+    margin: 10px;
+  }
+  

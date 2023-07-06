@@ -1,24 +1,22 @@
-const express= require("express");
-const  mysql= require("mysql");
-const app=express();
+const express = require("express");
+const mysql = require("mysql");
+const app = express();
 const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
-app.listen(8080,(err)=>{
-    if(err){
-        console.log("Port not connected"+err);
-    }
-    else{
-        console.log("Server is running on port 8080");
-    }
+app.listen(8080, (err) => {
+  if (err) {
+    console.log("Port not connected" + err);
+  } else {
+    console.log("Server is running on port 8080");
+  }
 });
 
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
+  
   const db = mysql.createConnection({
     user: "root",
     password: "root",
@@ -60,36 +58,91 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.get("/home", (req, res) => {
+  const db = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "homepage"
+  });
 
+  const response = {};
 
-app.get('/home', (req, res) => {
-    const db = mysql.createConnection({
-      user: "root",
-      password: "root",
-      host: "localhost",
-      database: "homepage"
-    });
-  
-    const response = {};
-  
-    db.query('SELECT * FROM header', (err, headerResult) => {
+  db.query('SELECT * FROM header', (err, headerResult) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    response.header = headerResult;
+
+    db.query('SELECT * FROM body', (err, bodyResult) => {
       if (err) {
         console.log(err);
         res.status(500).send('Internal Server Error');
         return;
       }
-      response.header = headerResult;
-  
-      db.query('SELECT * FROM body', (err, bodyResult) => {
-        if (err) {
-          console.log(err);
-          res.status(500).send('Internal Server Error');
-          return;
-        }
-        
-        response.body = bodyResult;
-        res.send(response);
-      });
+      
+      response.body = bodyResult;
+      res.send(response);
     });
   });
-  
+});
+
+app.get("/cart", (req, res) => {
+  const inventoryDb = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "inventory",
+  });
+
+  const cartDb = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "8789873838",
+  });
+
+  const response = {};
+
+  cartDb.query("SELECT * FROM cart", (err, cartResult) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+
+    const cartItems = cartResult.map((item) => ({
+      pid: item.pid,
+      category: item.category,
+    }));
+
+    const categoryPromises = cartItems.map((cartItem) => {
+      return new Promise((resolve, reject) => {
+        inventoryDb.query(
+          "SELECT * FROM ?? WHERE pid = ?",
+          [cartItem.category, cartItem.pid],
+          (err, categoryResult) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(categoryResult);
+            }
+          }
+        );
+      });
+    });
+
+    Promise.all(categoryPromises)
+      .then((results) => {
+        response.cart = cartResult;
+        response.inventory = results;
+        res.send(response);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+      });
+  });
+});

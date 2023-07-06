@@ -43,8 +43,18 @@ const setStyle = (data,name) => {
           return 'no img';
   }
 };
+const setSrcprod = (data,name) => {
+  const element = data.find(obj => obj.pid === name);
 
-export {setStyle,setContent,setHref,setSrc};
+  if (element) {
+
+    return require("./"+element['img']);
+      }else{
+        return 'no img';
+}
+};
+
+export {setStyle,setContent,setHref,setSrc,setSrcprod};
 
 
 

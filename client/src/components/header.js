@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { H1, H2, H3, IMG, P, A } from './tags';
 import './header.css';
-import { setStyle, setContent, setHref, setSrc } from './dbfunctions';
+import { setStyle, setContent, setHref, setSrc,setSrcprod } from './dbfunctions';
 import Axios from 'axios';
 
 const Header = (props) => {
