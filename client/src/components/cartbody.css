@@ -1,5 +1,6 @@
 .Cartpage {
     display: flex;
+    
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -11,6 +12,8 @@
     width:100px;
     height:90px;
     padding-top: 10px;
+    display: inline-flex;
+
   }
 
 
@@ -19,29 +22,19 @@
  }
 
 
- .product{
+ .cartprd{
      display: flex;
       border: 1px solid black;
      border-radius: 10px;
+     width: 100%;
      padding: 10px;
      margin: 10px;
  }
 
- .product h2[id="name"]{
+ .cartprd h2{
      display: inline-flex;
-     margin-left: 30px;
-     align-content: center;
+     margin-left: 50px;
+     margin-top: 50px;
  }
 
- .product h2[id="price"]{
-     display: inline-flex;
-     margin-left: 150px;
-     align-content: center;
- }
-
- .product h2[id="author"]{
-  display: inline-flex;
-  margin-left: 150px;
-  align-content: center;
-}
   

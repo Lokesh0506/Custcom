@@ -187,3 +187,24 @@ app.get("/cart", (req, res) => {
       });
   });
 });
+
+app.post("/cart/add", (req, res) => {
+  const cartDb = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "8789873838",
+  }
+  );
+
+  cartDb.query("UPDATE cart SET quantity = ?  WHERE pid = ? ",[,req.body.pid,req.body.quantity], (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Internal Server Error");
+      return;
+    }
+  
+  });
+ 
+
+});

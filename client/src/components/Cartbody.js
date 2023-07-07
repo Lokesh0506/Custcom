@@ -27,6 +27,40 @@ const Cartbody = (props) => {
       return 'no img';
     }
   };
+  function sendUpdateRequest(pid, quantity) {
+    Axios
+      .post("/cart/add", { pid, quantity })
+      .then((response) => {
+       
+        const updatedQuantity = response.data.quantity;
+        console.log("Updated quantity:", updatedQuantity);
+       
+      })
+      .catch((error) => {
+        
+        console.log("An error occurred:", error.message);
+      });
+  }
+  
+  function incrementQuantity(pid) {
+    const quantity = parseInt(document.getElementById("texqan").value);
+    quantity++;
+  
+
+    sendUpdateRequest(pid, quantity);
+  }
+  
+  function decrementQuantity(pid) {
+    let quantity = parseInt(document.getElementById("texqan").value);
+    quantity--;
+  
+    sendUpdateRequest(pid, quantity);
+  }
+
+    function handleInputChange(event, pid) {
+      const quantity = parseInt(event.target.value);
+sendUpdateRequest(pid, quantity);
+    }
   return (
     <div className='Cartpage'>
      
@@ -41,16 +75,17 @@ const Cartbody = (props) => {
             const { pname, price, authorname } = inventoryItem[0];
   
             return (
-              <div key={pid} className='product'>
+              <div key={pid} className='cartprd'>
          
                 <IMG
                   src={setSrcprod(inventoryItem, pid)}
                   key={`${pid}-${index}`}
                 />
               
-                 <h2 id="name">{pname}</h2>
-                <h2 id="price">{price}</h2>
+                <h2 id="name">{pname}</h2>
                 <h2 id="author">{authorname}</h2>
+                <h2 id="price">₹{price}</h2>
+                
               </div>
             );
           } else {
