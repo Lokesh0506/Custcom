@@ -10,7 +10,7 @@ import Cartbody from './components/Cartbody';
 function Cart() {
   return (
     <div className="App">
-      <Header bg_color=""/>
+      <Header bg_color=" "/>
       <Cartbody />
     </div>
   );

@@ -66,6 +66,13 @@ app.get("/home", (req, res) => {
     database: "homepage"
   });
 
+  const invdb = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "inventory"
+  });
+
   const response = {};
 
   db.query('SELECT * FROM header', (err, headerResult) => {
