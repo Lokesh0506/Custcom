@@ -1,0 +1,29 @@
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 70px;
+    background-color: #585656;
+    width: 100%;
+  }
+  
+  .footer a {
+    padding: 8px;
+    color: whitesmoke;
+  }
+  
+  .footer p {
+    margin: 0;
+    padding: 20px;
+    color: whitesmoke;
+  }
+  
+  address {
+    margin: 0;
+    font-size: 16px;
+    padding: 20px;
+    color: aliceblue;
+    flex: 1;
+  }
+  

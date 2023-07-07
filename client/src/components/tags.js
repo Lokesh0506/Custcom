@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
-import Header from './header';
-import Axios from 'axios';
+
 
 const H1 = (props) => {
    return (
@@ -37,9 +36,15 @@ const IMG = (props) => {
      )
 };
 
+const BUTTON = (props) => {
+  return (
+       <button id={props.id} type={props.type}  onClick={props.onClick} style={props.style}>{props.value}</button>
+     )
+};
 
 
-export  {H1,H2,H3,P,A,IMG} ;
+
+export  {H1,H2,H3,P,A,IMG,BUTTON} ;
 
 
 

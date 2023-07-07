@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  H1, H2, H3, IMG, P, A  } from './tags';
+import {  H1, H2, H3, IMG, P, A ,BUTTON } from './tags';
 import './body.css';
 import { setStyle, setContent, setHref, setSrc } from './dbfunctions';
 import Axios from 'axios';
@@ -60,11 +60,15 @@ const Body = (props) => {
     
   }
 
+  
+
   return (
     <div>
       <IMG id="logo" src={setSrc(data, `ad_ban${currentIndex + 1}`)} style={imgStyle} />
       <br />
       <H2 id="rec" content={setContent(data, 'rec')} style={setStyle(data, 'rec')}/>
+      
+      
       <H2 id="groc" content={setContent(data, 'groc')} style={setStyle(data, 'groc')}/>
 
       <div className='prd_row'>{prdfetch(invdata.grocery,"grocery")}</div>
