@@ -122,7 +122,16 @@ app.get("/home", (req, res) => {
 
             response.inv.grocery = invgroc;
 
+            db.query('SELECT * FROM footer', (err, footerResult) => {
+              if (err) {
+                console.log(err);
+                res.status(500).send('Internal Server Error');
+                return;
+              }
+              response.footer = footerResult;
+
             res.send(response);
+            });
           });
         });
       });
