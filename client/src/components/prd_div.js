@@ -17,6 +17,23 @@ const PrdDiv = (props) => {
     width: "300px",
     height: "100px"
   };
+  const addToCart = () => {
+   
+    const cartData = {
+      prdId: props.prd_id, 
+      price: props.prd_price, 
+      category: props.prd_category 
+    };
+    Axios.post('http://localhost:8080/cart/frstadd', cartData)
+    .then(response => {
+    
+      console.log(response.data);
+    })
+    .catch(error => {
+     
+      console.error(error);
+    });
+};
 
   return (
    
@@ -35,7 +52,7 @@ const PrdDiv = (props) => {
       </div>
     </div>
  
-  <button>Add to Cart</button>
+  <button onClick={addToCart}>Add to Cart</button>
    </div>
 </div>
 

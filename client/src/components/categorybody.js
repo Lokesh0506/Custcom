@@ -53,7 +53,7 @@ const CategoryBody = (props) => {
 
     invdata.forEach((obj) => {
     prd_row.push(
-      <PrdDiv data={data} key={obj.id} prd_img={require('./inventory_imgs/'+props.category+'/'+obj.img)} prd_name={obj.pname} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
+      <PrdDiv data={data} key={obj.id} prd_category ={props.category} prd_img={require('./inventory_imgs/'+props.category+'/'+obj.img)} prd_name={obj.pname} prd_id={obj.pid} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
     );
   });
 

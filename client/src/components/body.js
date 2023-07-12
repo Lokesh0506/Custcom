@@ -52,7 +52,7 @@ const Body = (props) => {
 
     invdata.forEach((obj) => {
     prd_row.push(
-      <PrdDiv data={data} key={obj.id} prd_img={require('./inventory_imgs/'+cat+'/'+obj.img)} prd_name={obj.pname} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
+      <PrdDiv data={data} key={obj.id} prd_category ={cat}prd_img={require('./inventory_imgs/'+cat+'/'+obj.img)} prd_name={obj.pname} prd_id={obj.pid} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
     );
   });
 
@@ -79,7 +79,7 @@ const Body = (props) => {
 
       <H2 id="books" content={setContent(data, 'books')} style={setStyle(data, 'books')}/>
 
-      <div className='prd_row'>{prdfetch(invdata.book,"book")}</div>
+      <div className='prd_row'>{prdfetch(invdata.book,"books")}</div>
     </div>
   );
 };

@@ -299,5 +299,29 @@ app.post("/category", (req, res) => {
           })
         });
       });
+}
+
+);
+app.post("/cart/frstadd", (req, res) => {
+  const cartadd = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "8789873838",
+  });
+
+  const { prdId, price, category } = req.body;
+
+  const sql = 'INSERT INTO cart (pid, price, category) VALUES (?, ?, ?)';
+  const values = [prdId, price, category];
+
+  cartadd.query(sql, values, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    } else {
+      res.send("Successfully added");
+    }
+  });
 });
 
