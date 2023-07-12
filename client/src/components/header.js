@@ -30,7 +30,7 @@ const Header = (props) => {
         <div className="category_div">
           <A className="category_a" href={setHref(data, "category")} content={setContent(data, 'category')} style={setStyle(data, 'category')} />
           <div className="category_drpdwn">
-            <a href="#">Grocery</a><br />
+            <a href="/grocery">Grocery</a><br />
             <a href="#">Electronics</a><br />
             <a href="#">Clothings</a><br />
           </div>

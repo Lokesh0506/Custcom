@@ -233,3 +233,71 @@ app.post("/cart/add", (req, res) => {
     }
   );
 });
+
+app.post("/category", (req, res) => {
+  const db = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "category"
+  });
+
+  const invdb = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "inventory"
+  });
+
+  const response = {};
+
+  db.query('SELECT * FROM header', (err, headerResult) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+    response.header = headerResult;
+
+    db.query('SELECT * FROM body', (err, bodyResult) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+
+      response.body = bodyResult;
+
+     
+
+      invdb.query(`SELECT * FROM ${req.body.category}`, (err, invResult) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send('Internal Server Error');
+          return;
+        }
+  
+        response.inv = invResult;
+      
+
+      
+            db.query('SELECT * FROM footer', (err, footerResult) => {
+              if (err) {
+                console.log(err);
+                res.status(500).send('Internal Server Error');
+                return;
+              }
+              response.footer = footerResult;
+          
+              response.category={category:req.body.category};
+
+
+            res.send(response);
+
+            
+            });
+          })
+        });
+      });
+});
+
