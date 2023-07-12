@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import './cartbody.css';
 import { BUTTON } from './tags';
+import { setStylecart, setContent, setHref, setSrc,setSrcprod } from './dbfunctions';
+
 
 const Cartbody = (props) => {
   const [data, setData] = useState([]);
-
+  
   useEffect(() => {
     Axios.get('http://localhost:8080/cart')
       .then(response => {
@@ -17,6 +19,8 @@ const Cartbody = (props) => {
       });
   }, []);
 
+
+
   const setSrcprod = (data, name) => {
     const element = data.find(obj => obj.pid === name);
 
@@ -27,24 +31,22 @@ const Cartbody = (props) => {
     }
   };
 
-  function sendUpdateRequest(pid, quantity) {
-    Axios
-      .post("/cart/add", { pid, quantity })
-      .then((response) => {
-        const updatedQuantity = response.data.quantity;
-        console.log("Updated quantity:", updatedQuantity);
-      })
-      .catch((error) => {
-        console.log("An error occurred:", error.message);
-      });
+  function sendUpdateRequest(pid, quantity) {Axios.post('http://localhost:8080/cart/add', { pid, quantity })
+  .then(response=> {
+   
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
   }
   
   function incrementQuantity(pid) {
     const quantityElement = document.getElementById(`texqan-${pid}`);
     if (quantityElement) {
       let quantity = parseInt(quantityElement.value);
-      alert("hii");
       quantity++;
+      quantityElement.value = quantity;
       sendUpdateRequest(pid, quantity);
     }
   }
@@ -53,11 +55,24 @@ const Cartbody = (props) => {
     const quantityElement = document.getElementById(`texqan-${pid}`);
     if (quantityElement) {
       let quantity = parseInt(quantityElement.value);
-      quantity--;
+      if (quantity > 0) {
+        quantity--;
+        quantityElement.value = quantity;
+        sendUpdateRequest(pid, quantity);
+      }
+    }
+  }
+function inputval(pid){
+  const quantityElement = document.getElementById(`texqan-${pid}`);
+  if (quantityElement) {
+    let quantity = parseInt(quantityElement.value);
+    if (quantity >= 0) {
+      quantityElement.value = quantity;
       sendUpdateRequest(pid, quantity);
     }
   }
 
+}
   return (
     <div className='Cartpage'>
       {data.cart && data.cart.length > 0 && data.inventory && data.inventory.length > 0 && (
@@ -76,8 +91,8 @@ const Cartbody = (props) => {
                 <h2 id="name">{pname}</h2>
                 <h2 id="author">{authorname}</h2>
                 <h2 id="price">₹{price}</h2>
-                <BUTTON id="sub" onClick={()=>decrementQuantity(pid)} value="-" />
-                <input type='number' id={`texqan-${pid}`} defaultValue={quantity} />
+                <BUTTON id="sub" onClick={()=>decrementQuantity(pid)} style={setStylecart(data,'cartbutton')} value="-" />
+                <input type='number' id={`texqan-${pid}`} defaultValue={quantity}   onChange={() => inputval(pid)} />
                 <BUTTON id="sub" onClick={()=>incrementQuantity(pid)} value="+" />
               </div>
             );
