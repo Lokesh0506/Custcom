@@ -52,7 +52,7 @@ const Body = (props) => {
 
     invdata.forEach((obj) => {
     prd_row.push(
-      <PrdDiv data={data} key={obj.id} prd_img={require('./inventory_imgs/'+cat+'/'+obj.img)} prd_name={obj.pname} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
+      <PrdDiv data={data} key={obj.id}  enableHover={props.enableHover} prd_img={require('./inventory_imgs/'+cat+'/'+obj.img)} prd_name={obj.pname} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
     );
   });
 
@@ -64,22 +64,28 @@ const Body = (props) => {
 
   return (
     <div>
-      <IMG id="ad_banner" src={setSrc(data, `ad_ban${currentIndex + 1}`)} style={imgStyle} />
+      <IMG
+        id="ad_banner"
+        src={setSrc(data, `ad_ban${currentIndex + 1}`)}
+        style={imgStyle}
+        enableHover={props.enableHover}
+      />
+
       <br />
-      <H2 id="rec" content={setContent(data, 'rec')} style={setStyle(data, 'rec')}/>
+      <H2  enableHover={props.enableHover} id="rec" content={setContent(data, 'rec')} style={setStyle(data, 'rec')}/>
       
       
-      <H2 id="groc" content={setContent(data, 'groc')} style={setStyle(data, 'groc')}/>
+      <H2  enableHover={props.enableHover} id="groc" content={setContent(data, 'groc')} style={setStyle(data, 'groc')}/>
 
       <div className='prd_row'>{prdfetch(invdata.grocery,"grocery")}</div>
       
-      <H2 id="elec" content={setContent(data, 'elec')} style={setStyle(data, 'elec')}/>
+      <H2  enableHover={props.enableHover} id="elec" content={setContent(data, 'elec')} style={setStyle(data, 'elec')}/>
 
       <div className='prd_row'>{prdfetch(invdata.electronic,"electronic")}</div>
 
-      <H2 id="books" content={setContent(data, 'books')} style={setStyle(data, 'books')}/>
+      <H2  enableHover={props.enableHover} id="books" content={setContent(data, 'books')} style={setStyle(data, 'books')}/>
 
-      <div className='prd_row'>{prdfetch(invdata.book,"book")}</div>
+      <div className='prd_row'>{prdfetch(invdata.book,"books")}</div>
     </div>
   );
 };

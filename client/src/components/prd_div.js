@@ -1,13 +1,15 @@
 import React, { Component, useEffect, useState } from 'react';
 import { setStyle, setContent, setHref, setSrc } from './dbfunctions';
 import "./prd_div_css.css";
-import { H1, H2, H3, IMG, P, A } from './tags';
+import { H1, H2, H3, IMG, P, A, BUTTON } from './tags';
 import Axios from 'axios';
 
 
 const PrdDiv = (props) => {
 
   const [data, setData] = useState([]);
+
+  const btnfunc=()=>{alert("button clicked");}
 
  
 
@@ -23,19 +25,19 @@ const PrdDiv = (props) => {
 
 <div className="prd_div">
   <div className="product-info">
-    <IMG id="prd_img" style={setStyle(props.data , 'prd_img')} src={props.prd_img} />
+    <IMG id="prd_img" enableHover={props.enableHover} style={setStyle(props.data , 'prd_img')} src={props.prd_img} />
     <div className="product-details">
-      <H2 id="prd_name" style={setStyle(props.data, 'prd_name')} content={props.prd_name} />
+      <H2 id="prd_name" enableHover={props.enableHover} style={setStyle(props.data, 'prd_name')} content={props.prd_name} />
       <div className="price-section">
-        <P id="prd_price" style={setStyle(props.data, 'prd_price')} content={"₹"+props.prd_price} />
+        <P id="prd_price" enableHover={props.enableHover} style={setStyle(props.data, 'prd_price')} content={"₹"+props.prd_price} />
         <div className="price-details">
-            <s><P id="prd_mrp" style={setStyle(props.data, 'prd_mrp')} content={"₹"+props.prd_mrp} /></s>
-            <P id="prd_offer" style={setStyle(props.data, 'prd_offer')} content={props.prd_offer+"%"} />
+            <s><P id="prd_mrp" enableHover={props.enableHover} style={setStyle(props.data, 'prd_mrp')} content={"₹"+props.prd_mrp} /></s>
+            <P id="prd_offer" enableHover={props.enableHover} style={setStyle(props.data, 'prd_offer')} content={props.prd_offer+"%"} />
         </div>
       </div>
     </div>
  
-  <button>Add to Cart</button>
+  <BUTTON onClick={btnfunc} id="add_to_cart" type="submit" enableHover={props.enableHover} value="Add to Cart"/>
    </div>
 </div>
 

@@ -4,7 +4,7 @@ import Home from './home';
 import Login from './login';
 import Cart from './cart';
 import Category from './category';
-import Signup from './signup';
+
 
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path="/home" element={<Home/>} />
+       
+        <Route path="/home" element={<Home enableHover={false}/>} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/grocery" element={<Category category="grocery" bg_color="#E9D9BF" header_color="#07B845"/>} />
         <Route path="/electronic" element={<Category category="electronic" bg_color="#E9D9BF" header_color="#07B845"/>} />

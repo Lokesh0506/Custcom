@@ -7,12 +7,16 @@ const Signup = () => {
   const [otp, setOtp] = useState('');
   const [isOtpSent, setIsOtpSent] = useState(false);
 
+
   const transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
+      // TODO: replace `user` and `pass` values from <https://forwardemail.net>
       user: 'services.Infinix.ecom@gmail.com',
-      pass: 'infinix1@',
-    },
+      pass: 'ijhmhxamsfucrvhf'
+    }
   });
 
   const sendEmailOtp = async (toEmail, otp) => {

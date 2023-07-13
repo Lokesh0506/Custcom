@@ -7,12 +7,12 @@ import Footer from './components/footer';
 
 
 
-function Home() {
+function Home(props) {
   return (
     <div className="App">
-      <Header bg_color=""/>
-      <Body />
-      <Footer/>
+      <Header bg_color="" enableHover={props.enableHover}/>
+      <Body enableHover={props.enableHover}/>
+      <Footer enableHover={props.enableHover}/>
     </div>
   );
 }
