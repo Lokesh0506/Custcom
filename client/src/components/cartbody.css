@@ -37,7 +37,37 @@
      margin-top: 50px;
  }
 
-  #sub {
-    border-radius: 50%;
+ .button-square {
+  display: flex;
+  align-items: center;
+  width: 100px; /* Adjust the width to your preference */
+  height: 100px; /* Adjust the height to your preference */
+  border: 2px solid #eaeaea; /* Adjust the border color to your preference */
+}
 
-  }
+.cart-button {
+  display: inline-block;
+  padding: 10px 20px; /* Adjust the padding to your preference */
+  background-color: #eaeaea; /* Adjust the button background color to your preference */
+  color: #333; /* Adjust the button text color to your preference */
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-button-minus {
+  border-radius: 50% 0 0 50%; /* Adjust the border radius for the minus button */
+}
+
+.cart-button-plus {
+  border-radius: 0 50% 50% 0; /* Adjust the border radius for the plus button */
+}
+
+.text-box {
+  width: 80px; /* Adjust the width of the text box to your preference */
+  height: 20px; /* Adjust the height of the text box to your preference */
+  margin-top: 10px; /* Adjust the margin top of the text box to your preference */
+  border: 1px solid #ccc; /* Adjust the border color of the text box to your preference */
+  border-radius: 4px; /* Adjust the border radius of the text box to your preference */
+  padding: 5px; /* Adjust the padding of the text box to your preference */
+}

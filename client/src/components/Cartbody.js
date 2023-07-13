@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import './cartbody.css';
-import { BUTTON } from './tags';
-import { setStylecart, setContent, setHref, setSrc,setSrcprod } from './dbfunctions';
+import { BUTTON ,H2} from './tags';
+import { setStylecart, setContent, setHref, setSrc,setSrcprod ,setStyle} from './dbfunctions';
 
 
 const Cartbody = (props) => {
@@ -90,13 +90,17 @@ function inputval(pid){
             return (
               <div key={pid} className='cartprd'>
                 <img src={setSrcprod(inventoryItem, pid , category)} alt={`${pid}-${index}`} />
-                <h2 id="name">{pname}</h2>
-                <h2 id="author">{authorname}</h2>
-                <h2 id="price">₹{price}</h2>
-                <BUTTON id="sub" onClick={()=>decrementQuantity(pid)} style={setStylecart(data,'cartbutton')} value="-" />
+                <H2 id="name" content={pname} style={setStylecart(data, 'name')}/>
+
+                <H2 id="name" content={price} style={setStylecart(data, 'author')}/>
+                <H2 id="name" content={authorname} style={setStylecart(data, 'price')}/>
+                
+                <div className="button-square">
+                <BUTTON id="sub" onClick={()=>decrementQuantity(pid)} style={setStylecart(data,'cartbutton-')} value="-" />
                 <input type='number' id={`texqan-${pid}`} defaultValue={quantity}   onChange={() => inputval(pid)} />
-                <BUTTON id="sub" onClick={()=>incrementQuantity(pid)} value="+" />
+                <BUTTON id="sub" onClick={()=>incrementQuantity(pid)} style={setStylecart(data,'cartbutton+')} value="+" />
               </div>
+    </div>
             );
           } 
         })
