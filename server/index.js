@@ -235,11 +235,12 @@ app.post("/cart/add", (req, res) => {
 });
 
 app.post("/category", (req, res) => {
+  
   const db = mysql.createConnection({
     user: "root",
     password: "root",
     host: "localhost",
-    database: "category"
+    database: "homepage"
   });
 
   const invdb = mysql.createConnection({
@@ -299,5 +300,49 @@ app.post("/category", (req, res) => {
           })
         });
       });
+}
+
+);
+app.post("/cart/frstadd", (req, res) => {
+  const cartadd = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "8789873838",
+  });
+
+  const { prdId, price, category } = req.body;
+
+  const sql = 'INSERT INTO cart (pid, price, category) VALUES (?, ?, ?)';
+  const values = [prdId, price, category];
+
+  cartadd.query(sql, values, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    } else {
+      res.send("Successfully added");
+    }
+  });
 });
 
+
+app.post("/custcom", (req, res) => {
+  const cartadd = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "homepage",
+  });
+
+  const { id } = req.body;
+
+  cartadd.query(`SELECT * FROM body WHERE id = ${id} UNION SELECT * FROM header WHERE id = ${id} UNION SELECT * FROM footer WHERE id = ${id};`, (err,result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    } else {
+      res.send(result);
+    }
+  });
+});

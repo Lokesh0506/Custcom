@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 const handleHover = (id,enable) => {
   if(enable){
   console.log('Hovered ID:', id);
+  window.parent.postMessage(id, '*');
 }else{return null;}
 };
 
@@ -34,7 +35,7 @@ const P = (props) => {
 
 const A = (props) => {
   return (
-       <a id={props.id} onClick={(e) => handleHover(e.target.id, props.enableHover)} href={props.href} style={props.style}>{props.content}</a>
+       <a id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} href={props.href} style={props.style}>{props.content}</a>
      )
 };
 const IMG = (props) => {

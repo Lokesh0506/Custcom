@@ -11,6 +11,7 @@ const Login = () => {
         const [mobilenumber, setMobileno] = useState('');
         const [password, setPassword] = useState('');
         const navigate = useNavigate();
+        var enableHover='false';
       
         const handleSubmit = async (e) => {
           e.preventDefault();
@@ -28,12 +29,14 @@ const Login = () => {
           }
       
             else if (response.data==="toAdmin") {
-                alert("ADMIN");
-                navigate('/admin');
+                navigate('/custcom');
             }
 
             else if (response.data==="toUser") {
-                navigate('/home',{mobilenumber});
+              enableHover="false";
+              const queryParameters = `?mobno=${mobilenumber}&enable=${enableHover}`;
+          
+              navigate(`/home${queryParameters}`);
             }
 
             else if (response.data==="incorrectPassword") {

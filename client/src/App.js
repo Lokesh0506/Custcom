@@ -4,6 +4,7 @@ import Home from './home';
 import Login from './login';
 import Cart from './cart';
 import Category from './category';
+import Custcomhome from './custcom_home';
 
 
 
@@ -12,8 +13,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
-       
-        <Route path="/home" element={<Home enableHover={false}/>} />
+        <Route path="/custcom" element={<Custcomhome/>} />
+        <Route path="/home" element={<Home enableHover={true}/>} />
         <Route path="/cart" element={<Cart/>} />
         <Route path="/grocery" element={<Category category="grocery" bg_color="#E9D9BF" header_color="#07B845"/>} />
         <Route path="/electronic" element={<Category category="electronic" bg_color="#E9D9BF" header_color="#07B845"/>} />

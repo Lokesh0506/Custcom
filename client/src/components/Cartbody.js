@@ -21,11 +21,11 @@ const Cartbody = (props) => {
 
 
 
-  const setSrcprod = (data, name) => {
+  const setSrcprod = (data, name, category) => {
     const element = data.find(obj => obj.pid === name);
 
     if (element) {
-      return require("./" + element.img);
+      return require("./inventory_imgs/" + category+"/"+ element.img);
     } else {
       return 'no img';
     }
@@ -77,17 +77,19 @@ function inputval(pid){
     <div className='Cartpage'>
       {data.cart && data.cart.length > 0 && data.inventory && data.inventory.length > 0 && (
         data.cart.map((cartItem, index) => {
-          const { pid , quantity} = cartItem;
+          const { pid , quantity, category} = cartItem;
           const inventoryArr = data.inventory;
 
           const inventoryItem = inventoryArr.find(item => item[0].pid === pid);
+          console.log("inv");
+          console.log(inventoryItem);
 
           if (inventoryItem) {
             const { pname, price, authorname } = inventoryItem[0];
 
             return (
               <div key={pid} className='cartprd'>
-                <img src={setSrcprod(inventoryItem, pid)} alt={`${pid}-${index}`} />
+                <img src={setSrcprod(inventoryItem, pid , category)} alt={`${pid}-${index}`} />
                 <h2 id="name">{pname}</h2>
                 <h2 id="author">{authorname}</h2>
                 <h2 id="price">₹{price}</h2>
@@ -96,9 +98,7 @@ function inputval(pid){
                 <BUTTON id="sub" onClick={()=>incrementQuantity(pid)} value="+" />
               </div>
             );
-          } else {
-            return <h1>Some error occurred</h1>;
-          }
+          } 
         })
       )}
     </div>

@@ -53,7 +53,7 @@ const CategoryBody = (props) => {
 
     invdata.forEach((obj) => {
     prd_row.push(
-      <PrdDiv data={data} key={obj.id} prd_img={require('./inventory_imgs/'+props.category+'/'+obj.img)} prd_name={obj.pname} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
+      <PrdDiv data={data} enableHover={props.enableHover} key={obj.id} prd_category ={props.category} prd_img={require('./inventory_imgs/'+props.category+'/'+obj.img)} prd_name={obj.pname} prd_id={obj.pid} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
     );
   });
 
@@ -65,12 +65,12 @@ const CategoryBody = (props) => {
 
   return (
     <div>
-      <IMG id="ad_banner" src={setSrc(data, `ad_ban${currentIndex + 1}`)} style={imgStyle} />
+      <IMG enableHover={props.enableHover} id="ad_banner" src={setSrc(data, `ad_ban${currentIndex + 1}`)} style={imgStyle} />
       <br />
-      <H2 id="rec" content={setContent(data, 'rec')} style={setStyle(data, 'rec')}/>
+      <H2 enableHover={props.enableHover} id="rec" content={setContent(data, 'rec')} style={setStyle(data, 'rec')}/>
       
       
-      <H2 id="groc" content={setContent(data, 'groc')} style={setStyle(data, 'groc')}/>
+      <H2 enableHover={props.enableHover} id={props.category} content={setContent(data, props.category)} style={setStyle(data, props.category)}/>
 
       <div className='prd_row'>{prdfetch(invdata)}</div>
       

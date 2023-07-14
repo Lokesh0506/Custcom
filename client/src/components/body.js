@@ -52,9 +52,19 @@ const Body = (props) => {
 
     invdata.forEach((obj) => {
     prd_row.push(
-      <PrdDiv data={data} key={obj.id}  enableHover={props.enableHover} prd_img={require('./inventory_imgs/'+cat+'/'+obj.img)} prd_name={obj.pname} prd_price={obj.price} prd_offer={obj.offer} prd_mrp={obj.mrp} />
+      <PrdDiv 
+      data={data} 
+      key={obj.id}  
+      enableHover={props.enableHover} 
+      prd_img={require('./inventory_imgs/'+cat+'/'+obj.img)} 
+      prd_category ={cat}
+      prd_id={obj.pid}
+      prd_name={obj.pname} 
+      prd_price={obj.price} 
+      prd_offer={obj.offer} 
+      prd_mrp={obj.mrp} />
     );
-  });
+  });  
 
   return prd_row;
     
