@@ -18,12 +18,15 @@ const setStyle = (data, name, opstyl) => {
 const setStylecart = (data, name ) => {
   const element = data.cartStyle.find(obj => obj.id === name);
   if (element) {
+    
     return {
+      
  
       color: element.color,
       backgroundColor: element.bg_color,
       fontFamily: element.font_family,
-      textDecoration: element.text_decoration
+      textDecoration: element.text_decoration,
+    
     };
   }
   return {};

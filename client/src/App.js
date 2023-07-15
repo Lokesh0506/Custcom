@@ -21,7 +21,7 @@ function App() {
         <Route path="/books" element={<Category category="books" bg_color="#E9D9BF" header_color="#07B845"/>} />
       </Routes>
     </Router>
-  );
+  ); 
 }
 
 export default App;

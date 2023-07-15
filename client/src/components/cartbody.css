@@ -1,43 +1,97 @@
 .Cartpage {
-    display: flex;
-    
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding:50px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+
+.Cartpage img {
+  margin: 10px;
+  width: 100px;
+  height: 90px;
+  padding-top: 10px;
+  display: inline-flex;
+}
+
+h1 {
+  text-align: center;
+}
+
+.cartprd {
+  display:inline-flex ;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+ 
+}
+
+.cartprd h2 {
+  display: inline-flex;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.cartcon{
+  display: inline;
+  width:auto;
+}
+
+.button-square {
+  display:flex;
+  align-items: center;
+  width: 100px; 
+  height: 100px; 
+  margin-right: 30%;
+  background-color: transparent; 
+  border-radius: 0px;
+}
+.button-square input[type='number'] {
+  margin-left: 10px; 
+  margin-right: 10px;
+  width:60px;
+  height:40px;
+}
+#bill{
+  padding: 60px;;
+  font-size: 30px;
+}
+button[id="checkout"]{
+  height:75px;
+  width:150px;
+  align-items: center;
+  white-space: pre-line;
+}
+
+
+
+.cart-button {
+  display: inline-block;
+  padding: 10px 20px; 
+  background-color: #eaeaea; 
+  color: #333; 
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin: 10%;
   
-  .Cartpage img {
-    margin: 10px;
-    width:100px;
-    height:90px;
-    padding-top: 10px;
-    display: inline-flex;
+}
+#cartbutton-{
+  display: flex;
+  border-radius: 0px;
+  height:50px;
+  width:80px;
+  padding: 10px;
+}
+#cartbuttonpos{
+  display: flex;
+  border-radius: 0px;
+  height:50px;
+  width:70px;
+  padding: 10px;
+}
 
-  }
 
 
-  h1{
-    text-align: center;
- }
 
 
- .cartprd{
-     display: flex;
-      border: 1px solid black;
-     border-radius: 10px;
-     width: 100%;
-     padding: 10px;
-     margin: 10px;
- }
-
- .cartprd h2{
-     display: inline-flex;
-     margin-left: 50px;
-     margin-top: 50px;
- }
-
-  #sub {
-    border-radius: 50%;
-
-  }
