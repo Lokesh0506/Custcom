@@ -29,23 +29,30 @@ app.post("/login", (req, res) => {
     (err, dbres) => {
       if (err) {
         console.log(err);
+        db.end();
         return res.status(500).send("Internal Server Error");
       }
 
       if (req.body.username === "" || dbres.length === 0) {
+        db.end();
         return res.send("invalidUsername");
       }
 
       if (req.body.username === "admin") {
         if (dbres[0].password === req.body.password) {
+          db.end();
           return res.send("toAdmin");
         } else {
+          db.end();
           return res.send("incorrectPassword");
         }
       } else {
+        
         if (req.body.password === dbres[0].password) {
+          db.end();
           return res.send("toUser");
         } else {
+          db.end();
           return res.send("incorrectPassword");
         }
       }
@@ -73,6 +80,7 @@ app.get("/home", (req, res) => {
   db.query("SELECT * FROM header", (err, headerResult) => {
     if (err) {
       console.log(err);
+      db.end();
       return res.status(500).send("Internal Server Error");
     }
     response.header = headerResult;
@@ -80,6 +88,7 @@ app.get("/home", (req, res) => {
     db.query("SELECT * FROM body", (err, bodyResult) => {
       if (err) {
         console.log(err);
+        db.end();
         return res.status(500).send("Internal Server Error");
       }
 
@@ -90,6 +99,7 @@ app.get("/home", (req, res) => {
         (err, invbook) => {
           if (err) {
             console.log(err);
+            invdb.end();
             return res.status(500).send("Internal Server Error");
           }
           response.inv = {};
@@ -122,6 +132,8 @@ app.get("/home", (req, res) => {
                     }
 
                     response.footer = footerResult;
+                    invdb.end();
+                    db.end();
                     return res.send(response);
                   });
                 }
@@ -161,12 +173,14 @@ app.get("/cart", (req, res) => {
   cartstyle.query("SELECT * FROM body", (err, cartStyle) => {
     if (err) {
       console.log(err);
+      cartStyle.end();
       return res.status(500).send("Internal Server Error");
     }
 
     cartDb.query("SELECT * FROM cart", (err, cartResult) => {
       if (err) {
         console.log(err);
+        cartDb.end();
         return res.status(500).send("Internal Server Error");
       }
 
@@ -196,10 +210,16 @@ app.get("/cart", (req, res) => {
           response.cart = cartResult;
           response.inventory = results;
           response.cartStyle = cartStyle;
+          cartDb.end();
+          cartstyle.end();
+          inventoryDb.end();
           return res.send(response);
         })
         .catch((err) => {
           console.log(err);
+          cartDb.end();
+          cartstyle.end();
+          inventoryDb.end();
           return res.status(500).send("Internal Server Error");
         });
     });
@@ -224,8 +244,10 @@ app.post("/cart/add", (req, res) => {
     (err) => {
       if (err) {
         console.log(err);
+        cartDb.end();
         return res.status(500).send("Internal Server Error");
       } else {
+        cartDb.end();
         res.send("Successfully added");
       }
 
@@ -293,6 +315,8 @@ app.post("/category", (req, res) => {
 
 
             res.send(response);
+            invdb.end();
+            db.end();
 
             
             });
@@ -318,8 +342,10 @@ app.post("/cart/frstadd", (req, res) => {
   cartadd.query(sql, values, (err) => {
     if (err) {
       console.error(err);
+      cartadd.end();
       return res.status(500).send("Internal Server Error");
     } else {
+      cartadd.end();
       res.send("Successfully added");
     }
   });
