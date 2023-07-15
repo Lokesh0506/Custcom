@@ -46,7 +46,7 @@ const IMG = (props) => {
 
 const BUTTON = (props) => {
   return (
-       <button id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} type={props.type}  onClick={props.onClick} style={props.style}>{props.value}</button>
+       <button tagtype="button" id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} type={props.type}  onClick={props.onClick} style={props.style}>{props.value}</button>
      )
 };
 

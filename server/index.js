@@ -328,21 +328,45 @@ app.post("/cart/frstadd", (req, res) => {
 
 
 app.post("/custcom", (req, res) => {
-  const cartadd = mysql.createConnection({
+  const struct = mysql.createConnection({
     user: "root",
     password: "root",
     host: "localhost",
     database: "homepage",
   });
 
-  const { id } = req.body;
+ 
 
-  cartadd.query(`SELECT * FROM body WHERE id = ${id} UNION SELECT * FROM header WHERE id = ${id} UNION SELECT * FROM footer WHERE id = ${id};`, (err,result) => {
+  
+  const response=[];
+
+  struct.query('SELECT * FROM header',(err,headerResult)=>{
     if (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-    } else {
-      res.send(result);
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+      return;
     }
+    response.push(...headerResult);
+
+    struct.query('SELECT * FROM body',(err,bodyResult)=>{
+      if (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+        return;
+      }
+      response.push(...bodyResult);
+
+      struct.query('SELECT * FROM footer',(err,footerResult)=>{
+        if (err) {
+          console.log(err);
+          res.status(500).send('Internal Server Error');
+          return;
+        }
+        response.push(...footerResult);
+
+        res.send(response);
+
+    });
+  });
   });
 });
