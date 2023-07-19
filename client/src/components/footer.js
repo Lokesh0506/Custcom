@@ -18,16 +18,30 @@ const Footer = (props) => {
             });
     }, []);
 
+    const fontfetch = (data) => {
+        const fontLinks = data.map((fontStyle) => {
+          const { font_family } = fontStyle;
+          if (font_family) {
+            return (
+              <link key={font_family} rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${font_family}`} />
+            );
+          }
+          return null;
+        });
+      
+        return fontLinks;
+      };
+
     const st = { backgroundColor: props.bg_color };
 
     return (
         <div style={st} className='footer'>
-
-            <P id="phone_no" content={"Phone: "+ setContent(data,"phone_no")} style={setStyle(data, 'phone_no')}/>
-            <P id ="email" content="Email: " style={setStyle(data, 'email')}> <A href={"https://mail.google.com/mail/?view=cm&tf=0&to="+setHref(data, "email")} content={setContent(data, "email")} style={setStyle(data, 'email')}/></P>
+            {fontfetch(data)}
+            <P id="phone_no" enableHover={props.enableHover} content={"Phone: "+ setContent(data,"phone_no")} style={setStyle(data, 'phone_no')}/>
+            <P id ="email" enableHover={props.enableHover} content="Email: " style={setStyle(data, 'email')}> <A href={"https://mail.google.com/mail/?view=cm&tf=0&to="+setHref(data, "email")} content={setContent(data, "email")} style={setStyle(data, 'email')}/></P>
             <address>
-                <b>Visit us at:</b><br />
-                <P id="address" content={setContent(data,"address")} />
+                <P id="address_title" enableHover={props.enableHover} content={setContent(data,"address_title")} style={setStyle(data, 'address_title')}></P>
+                <P id="address" enableHover={props.enableHover} content={setContent(data,"address")} style={setStyle(data, 'address')} />
             </address>
 
                     </div>

@@ -61,10 +61,25 @@ const CategoryBody = (props) => {
     
   }
 
+  const fontfetch = (data) => {
+    const fontLinks = data.map((fontStyle) => {
+      const { font_family } = fontStyle;
+      if (font_family) {
+        return (
+          <link key={font_family} rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${font_family}`} />
+        );
+      }
+      return null;
+    });
+  
+    return fontLinks;
+  };
+
 
 
   return (
     <div>
+      {fontfetch(data)}
       <IMG enableHover={props.enableHover} id="ad_banner" src={setSrc(data, `ad_ban${currentIndex + 1}`)} style={imgStyle} />
       <br />
       <H2 enableHover={props.enableHover} id="rec" content={setContent(data, 'rec')} style={setStyle(data, 'rec')}/>

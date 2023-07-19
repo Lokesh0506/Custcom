@@ -69,11 +69,25 @@ const Body = (props) => {
   return prd_row;
     
   }
+  const fontfetch = (data) => {
+    const fontLinks = data.map((fontStyle) => {
+      const { font_family } = fontStyle;
+      if (font_family) {
+        return (
+          <link key={font_family} rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${font_family}`} />
+        );
+      }
+      return null;
+    });
+  
+    return fontLinks;
+  };
 
   
 
   return (
     <div>
+      {fontfetch(data)}
       <IMG
         id="ad_banner"
         src={setSrc(data, `ad_ban${currentIndex + 1}`)}

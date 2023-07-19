@@ -47,7 +47,7 @@ app.post("/login", (req, res) => {
           return res.send("incorrectPassword");
         }
       } else {
-        
+
         if (req.body.password === dbres[0].password) {
           db.end();
           return res.send("toUser");
@@ -257,7 +257,7 @@ app.post("/cart/add", (req, res) => {
 });
 
 app.post("/category", (req, res) => {
-  
+
   const db = mysql.createConnection({
     user: "root",
     password: "root",
@@ -291,7 +291,7 @@ app.post("/category", (req, res) => {
 
       response.body = bodyResult;
 
-     
+
 
       invdb.query(`SELECT * FROM ${req.body.category}`, (err, invResult) => {
         if (err) {
@@ -299,31 +299,31 @@ app.post("/category", (req, res) => {
           res.status(500).send('Internal Server Error');
           return;
         }
-  
+
         response.inv = invResult;
-      
-
-      
-            db.query('SELECT * FROM footer', (err, footerResult) => {
-              if (err) {
-                console.log(err);
-                res.status(500).send('Internal Server Error');
-                return;
-              }
-              response.footer = footerResult;
-          
-              response.category={category:req.body.category};
 
 
-            res.send(response);
-            invdb.end();
-            db.end();
 
-            
-            });
-          })
+        db.query('SELECT * FROM footer', (err, footerResult) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+            return;
+          }
+          response.footer = footerResult;
+
+          response.category = { category: req.body.category };
+
+
+          res.send(response);
+          invdb.end();
+          db.end();
+
+
         });
-      });
+      })
+    });
+  });
 }
 
 );
@@ -361,12 +361,12 @@ app.post("/custcom", (req, res) => {
     database: "homepage",
   });
 
- 
 
-  
-  const response=[];
 
-  struct.query('SELECT * FROM header',(err,headerResult)=>{
+
+  const response = [];
+
+  struct.query('SELECT * FROM header', (err, headerResult) => {
     if (err) {
       console.log(err);
       res.status(500).send('Internal Server Error');
@@ -374,7 +374,7 @@ app.post("/custcom", (req, res) => {
     }
     response.push(...headerResult);
 
-    struct.query('SELECT * FROM body',(err,bodyResult)=>{
+    struct.query('SELECT * FROM body', (err, bodyResult) => {
       if (err) {
         console.log(err);
         res.status(500).send('Internal Server Error');
@@ -382,7 +382,7 @@ app.post("/custcom", (req, res) => {
       }
       response.push(...bodyResult);
 
-      struct.query('SELECT * FROM footer',(err,footerResult)=>{
+      struct.query('SELECT * FROM footer', (err, footerResult) => {
         if (err) {
           console.log(err);
           res.status(500).send('Internal Server Error');
@@ -391,8 +391,33 @@ app.post("/custcom", (req, res) => {
         response.push(...footerResult);
 
         res.send(response);
+        struct.end();
 
+      });
     });
   });
+});
+
+app.post('/custcom/update', (req, res) => {
+  const struct = mysql.createConnection({
+    user: "root",
+    password: "root",
+    host: "localhost",
+    database: "homepage",
   });
+const newData  = req.body;
+const sql = `UPDATE ${newData.table} SET bg_color='${newData.bg_color}', color='${newData.color}', content='${newData.content}', font_family='${newData.font_family}', font_size='${newData.font_size}', href='${newData.href}', src='${newData.src}', text_decoration='${newData.text_decoration}' WHERE id='${newData.id}'`;
+
+
+ struct.query(sql, (err, headerResult) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+  });
+
+  res.send(req.body);
+
+  struct.end();
 });

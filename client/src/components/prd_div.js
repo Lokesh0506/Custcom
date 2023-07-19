@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { setStyle, setContent, setHref, setSrc } from './dbfunctions';
 import "./prd_div_css.css";
 import { H1, H2, H3, IMG, P, A, BUTTON } from './tags';
@@ -53,7 +53,7 @@ const PrdDiv = (props) => {
       </div>
     </div>
  
-  <BUTTON onClick={addToCart} id="add_to_cart" type="submit" enableHover={props.enableHover} value="Add to Cart"/>
+  <BUTTON onClick={addToCart} style={setStyle(props.data, 'add_to_cart')} id="add_to_cart" type="submit" enableHover={props.enableHover} value="Add to Cart"/>
    </div>
 </div>
 

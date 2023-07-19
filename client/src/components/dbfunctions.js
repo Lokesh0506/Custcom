@@ -3,6 +3,7 @@
 const setStyle = (data, name, opstyl) => {
   const element = data.find(obj => obj.id === name);
   if (element) {
+    
     return {
       ...opstyl,
       fontSize: element['font-size'],
@@ -10,7 +11,7 @@ const setStyle = (data, name, opstyl) => {
       backgroundColor: element.bg_color,
       fontFamily: element.font_family,
       fontSize: element.font_size,
-      textDecoration: element.text_decoration
+      textDecoration : element.text_decoration
     };
   }
   return {};

@@ -18,10 +18,26 @@ const Header = (props) => {
       });
   }, []);
 
+  const fontfetch = (data) => {
+    const fontLinks = data.map((fontStyle) => {
+      const { font_family } = fontStyle;
+      if (font_family) {
+        return (
+          <link key={font_family} rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${font_family}`} />
+        );
+      }
+      return null;
+    });
+  
+    return fontLinks;
+  };
+  
+
   const st = { backgroundColor: props.bg_color };
 
   return (
     <div style={st} className='header'>
+      {fontfetch(data)}
       <IMG enableHover={props.enableHover} id="logo" src={setSrc(data, 'logo')} style={setStyle(data, 'sub-title')} />
       <H1 id="title" enableHover={props.enableHover} content={setContent(data, 'title')} style={setStyle(data, 'title')} />
 

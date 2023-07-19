@@ -52,10 +52,8 @@
   
   .prd_div #prd_name {
     padding-top: 0px;
-    font-size: 18px;
     font-weight: bold;
     margin-bottom: 1px;
-    color: #333;
   }
   
   .prd_div .price-section {
@@ -78,35 +76,24 @@
   
   .prd_div #prd_price {
     display: inline;
-    font-size: 25px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
   }
   
   .prd_div #prd_mrp {
     display: inline;
-    font-size: 20px;
-    color: red;
   }
   
   .prd_div #prd_offer {
     display: inline;
-    font-size: 15px;
-    color: #03c303;
   }
   
   .prd_div button {
     padding: 8px 16px;
     margin-bottom: 8px;
     margin-top: 10px;
-   
-    background-color: #4CAF50;
-    color: #fff;
     border: none;
     border-radius: 20px;
-    font-size: 14px;
     cursor: pointer;
-  
     bottom: 10px;
     transition: background-color 0.3s ease;
   }

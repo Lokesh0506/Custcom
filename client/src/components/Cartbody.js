@@ -98,8 +98,24 @@ function inputval(pid){
   }
 
 }
+
+const fontfetch = (data) => {
+  const fontLinks = data.map((fontStyle) => {
+    const { font_family } = fontStyle;
+    if (font_family) {
+      return (
+        <link key={font_family} rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${font_family}`} />
+      );
+    }
+    return null;
+  });
+
+  return fontLinks;
+};
+
 return (
   <div className='Cartpage'>
+    {fontfetch(data)}
     {data.cart && data.cart.length > 0 && data.inventory && data.inventory.length > 0 && (
       <div>
         {data.cart.map((cartItem, index) => {
