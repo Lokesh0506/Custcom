@@ -2,6 +2,8 @@ const express = require("express");
 const mysql = require("mysql");
 const app = express();
 const cors = require("cors");
+const multer = require('multer');
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
@@ -396,3 +398,128 @@ app.post("/custcom", (req, res) => {
   });
   });
 });
+app.get('/custcom/inven', (req, res) => {
+  const connection = mysql.createConnection({
+    user: 'root',
+    password: 'root',
+    host: 'localhost',
+    database: 'inventory',
+  });
+  const queryBooks = "SELECT *, 'books' AS category FROM books";
+  const queryElectronics = "SELECT *, 'electronic' AS category FROM electronic";
+  const queryGrocery = "SELECT *, 'grocery' AS category FROM grocery";
+
+  let booksData, electronicsData, groceryData;
+
+  connection.query(queryBooks, (errorBooks, resultsBooks) => {
+    if (errorBooks) {
+      console.error('Error fetching books data:', errorBooks);
+      res.status(500).send({ error: 'Error fetching books data' });
+      connection.end();
+      return;
+    }
+
+    booksData = resultsBooks;
+
+    connection.query(queryElectronics, (errorElectronics, resultsElectronics) => {
+      if (errorElectronics) {
+        console.error('Error fetching electronics data:', errorElectronics);
+        res.status(500).send({ error: 'Error fetching electronics data' });
+        connection.end();
+        return;
+      }
+
+      electronicsData = resultsElectronics;
+
+      connection.query(queryGrocery, (errorGrocery, resultsGrocery) => {
+        if (errorGrocery) {
+          console.error('Error fetching grocery data:', errorGrocery);
+          res.status(500).send({ error: 'Error fetching grocery data' });
+          connection.end();
+          return;
+        }
+
+        groceryData = resultsGrocery;
+
+        connection.end();
+        const inventoryData = {
+          books: booksData,
+          electronic: electronicsData,
+          grocery: groceryData,
+        };
+        res.send(inventoryData);
+      });
+    });
+  });
+});
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'inventory',
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL server:', err);
+    return;
+  }
+  console.log('Connected to MySQL server');
+});
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+   console.log(req);
+    let uploadPath = path.join(__dirname, '../client/src/components/inventory_imgs/others');
+    if (req.body.category === 'books') {
+      uploadPath = path.join(__dirname, '../client/src/components/inventory_imgs/books');
+    } else if (req.body.category === 'electronic') {
+      uploadPath =path.join(__dirname, '../client/src/components/inventory_imgs/electronic');
+    } else if (req.body.category === 'grocery') {
+      uploadPath =path.join(__dirname, '../client/src/components/inventory_imgs/grocery');
+    }
+      cb(null, uploadPath);
+   
+  },
+ 
+
+  filename: (req, file, cb) => {
+    cb(null, `${file.originalname}`);
+  },
+ 
+});
+const upload = multer({ storage: storage }).single('img');
+
+
+app.post('/custcom/inven/add', (req, res) => {
+  console.log(req.body);
+  upload(req,res,(err)=>{
+    if(err){res.send(err);
+    }else{
+  const response={};
+  const { pid, pname, price,img_name, offer,mrp, desc, rating, stock, category } = req.body;
+  response.body= req.body;
+  response.file= req.body.img;
+
+  console.log("Body:",req.body);
+  console.log("File:",req.file);
+
+  const query = `INSERT INTO ${category} (pid, pname, img, price, offer, mrp, \`desc\`, rating, stock, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  connection.query(
+    query,
+    [pid,pname,img_name, price, offer,mrp, desc, rating, stock,category],
+    (err, result) => {
+      if (err) {
+        console.error('Error inserting data into the table:', err);
+        return res.sendStatus(500);
+        
+      }
+      res.send(response);
+      
+    }
+  );}});
+});
+
+

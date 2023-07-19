@@ -7,6 +7,7 @@ const Custcomhome = ()=>{
         <div>
             <Custcomheader bg_color="black"/>
             <Custcomedit/>
+            
         </div>
     )
 }
