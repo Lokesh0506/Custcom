@@ -1,32 +1,33 @@
 /* AddInventory.css */
 
-/* Dark Theme Styles */
-body {
+.add-inventory-container {
+  /* Dark Theme Styles */
   background-color: #1f1f1f;
   color: #eaeaea;
   font-family: Arial, sans-serif;
 }
 
-h1{
-    text-align: center;
-    margin: 2% 40%;
-    display: inline;
+.add-inventory-container h1 {
+  text-align: center;
+  margin: 2% 40%;
+  display: inline;
 }
-form {
+
+.add-inventory-container form {
   max-width: 500px;
-  margin:100px auto;
+  margin: 100px auto;
   padding: 20px;
   background-color: #353535;
   border-radius: 5px;
 }
 
-label {
+.add-inventory-container label {
   display: block;
   margin-bottom: 5px;
 }
 
-input,
-select {
+.add-inventory-container input,
+.add-inventory-container select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -36,13 +37,13 @@ select {
   border-radius: 3px;
 }
 
-input[type="file"] {
+.add-inventory-container input[type="file"] {
   border: 1px solid #444;
   background-color: #2f2f2f;
   cursor: pointer;
 }
 
-button {
+.add-inventory-container button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -51,11 +52,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.add-inventory-container button:hover {
   background-color: #0056b3;
 }
 
-button:disabled {
+.add-inventory-container button:disabled {
   background-color: #a0a0a0;
   cursor: not-allowed;
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import './AddInventory.css';
+
 const AddInventory = () => {
 
 
@@ -39,7 +41,10 @@ const AddInventory = () => {
   };
 
   return (
-  <>
+  <div  className="add-inventory-container">
+   <Helmet>
+        <link rel="stylesheet" href="AddInventory.css" />
+     </Helmet>
   <h1 >Add Your Inventory</h1><br/>
     <form onSubmit={handleSubmit} encType='multipart/form-data'>
       <label htmlFor="productId">Product ID:</label>
@@ -80,7 +85,7 @@ const AddInventory = () => {
 
       <button type="submit">Add Inventory</button>
     </form>
-    </>);
+    </div>);
 };
 
 export default AddInventory;
