@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-//import './viewInventory.css';
-
+import styles from './custcom_inven_show.module.css';
+import "./custcom_show.css";
 const ViewInventory = (props) => {
   console.log(props.inventoryData);
   const [edit, setEdit] = useState(0);
 
-
+ useEffect(() => {
+    document.body.classList.add(styles['custcom_show']);
+    return () => {
+      document.body.classList.remove(styles['custcom_show']);
+    };
+  }, []);
   const booksData = props.inventoryData.books;
   const electronicsData = props.inventoryData.electronic;
   const groceryData = props.inventoryData.grocery;
@@ -14,6 +19,8 @@ const ViewInventory = (props) => {
     setEdit(pid);
     //window.location.reload();
   };
+
+ 
   const handleDelete = (pid, category) => {
     axios
       .post('http://localhost:8080/custcom/inven/delete', { pid, category })
@@ -33,8 +40,8 @@ const ViewInventory = (props) => {
   const noneditable = (item) => {
     
     return (
-      <div>
-        <tr key={item.pid}>
+ 
+        <tr className='nonedit'>
           <td>{item.pid}</td>
           <td>{item.pname}</td>
           <td>
@@ -44,18 +51,17 @@ const ViewInventory = (props) => {
             {item.price}
           </td>
           <td>{item.offer}</td>
-          <td>{item.description}</td>
+          <td>{item.desc}</td>
           <td>{item.rating}</td>
           <td>{item.stock}</td>
           {item.category === "books" && <td>{item.authorname}</td>}
           <td>
-            <button onClick={() => handleEdit(item.pid, item.category)}>Edit</button>
+            <button id='edit' onClick={() => handleEdit(item.pid, item.category)}>Edit</button>
           </td>
           <td>
-            <button onClick={() => handleDelete(item.pid, item.category)}>Delete</button>
+            <button id='delete' onClick={() => handleDelete(item.pid, item.category)}>Delete</button>
           </td>
         </tr>
-      </div>
       );
   };
 
@@ -187,6 +193,8 @@ const ViewInventory = (props) => {
             <th>Rating</th>
             <th>Stock</th>
             <th>Authorname</th>
+            <th></th>
+            <th></th>
 
           </tr>
         </thead>
@@ -208,34 +216,14 @@ const ViewInventory = (props) => {
             <th>Description</th>
             <th>Rating</th>
             <th>Stock</th>
+            <th></th>
+            <th></th>
 
           </tr>
         </thead>
         <tbody>
-          {electronicsData?.map((item) => (
-            <tr key={item.pid}>
-              <td>{item.pid}</td>
-              <td>{item.pname}</td>
-              <td>
-                <img src={require(`../inventory_imgs/${item.category}/${item.img}`)} alt={item.pname} />
-              </td>
-              <td>
-                {item.price}
-              </td>
-              <td>{item.offer}</td>
-              <td>{item.description}</td>
-              <td>{item.rating}</td>
-              <td>{item.stock}</td>
-              <td>
-                <button onClick={() => handleEdit(item.pid, item.category)}>Edit</button>
-              </td>
-              <td>
-                <button onClick={() => handleDelete(item.pid, item.category)}>Delete</button>
-              </td>
-
-
-            </tr>
-          ))}
+          {electronicsData?.map((item) =>  (edit === item.pid ? editable(item) : noneditable(item))
+          )}
         </tbody>
       </table>
 
@@ -251,32 +239,14 @@ const ViewInventory = (props) => {
             <th>Description</th>
             <th>Rating</th>
             <th>Stock</th>
+            <th></th>
+            <th></th>
 
           </tr>
         </thead>
         <tbody>
-          {groceryData?.map((item) => (
-            <tr key={item.id}>
-              <td>{item.pid}</td>
-              <td>{item.pname}</td>
-              <td>
-                <img src={require(`../inventory_imgs/${item.category}/${item.img}`)} alt={item.pname} />
-              </td>
-              <td>
-                {item.price}
-              </td>
-              <td>{item.offer}</td>
-              <td>{item.description}</td>
-              <td>{item.rating}</td>
-              <td>{item.stock}</td>
-              <td>
-                <button onClick={() => handleEdit(item.pid, item.category)}>Edit</button>
-              </td>
-              <td>
-                <button onClick={() => handleDelete(item.pid, item.category)}>Delete</button>
-              </td>
-            </tr>
-          ))}
+          {groceryData?.map((item) =>  (edit === item.pid ? editable(item) : noneditable(item))
+          )}
         </tbody>
       </table>
     </>
