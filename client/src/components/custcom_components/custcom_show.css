@@ -1,0 +1,77 @@
+.nonedit img{
+    height: 100px;
+    width: 100px;
+}
+.inven_show table ,th,td{
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(59, 59, 59, 0.425);
+    font-size: 15px;
+
+}
+.inven_show table{
+    margin-left: 2%;
+}
+.inven_show th{
+    background-color: rgb(116, 112, 112);
+    font-size: 20px;
+    padding: 8px;
+}
+.inven_show tr:nth-child(odd){
+    background-color: rgba(116, 112, 112, 0.479);
+}
+
+.inven_show tr:nth-child(even){
+    background-color: rgba(125, 113, 113, 0.671);
+}
+
+.inven_show #edit {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+  }
+  
+ .inven_show #edit:hover {
+    background-color: #45a049; 
+  }
+  
+
+.inven_show  #delete {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+ .inven_show #delete:hover {
+    background-color: #d32f2f; 
+  }
+
+ .inven_show h2{
+    font-size: 40px;
+    text-align: center;
+    background-color: rgba(245, 245, 245, 0.311);
+    color: rgb(236, 245, 255);
+    border: 2px solid rgb(46, 46, 46);
+    border-radius: 10px;
+    padding: 5px;
+  }
+
+  
+  

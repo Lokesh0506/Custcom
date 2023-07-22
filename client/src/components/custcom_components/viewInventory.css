@@ -1,0 +1,69 @@
+/* viewInventory.css - Custom Dark Theme for ViewInventory page */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Style for the table */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  /* Common style for table header and table cells */
+  table th,
+  table td {
+    border: 1px solid #ffffff;
+    padding: 8px;
+    text-align: left;
+    overflow-wrap: break-word; /* This allows text to wrap within cells */
+  }
+  
+  /* Style for table header cells */
+  table th {
+    background-color: #333;
+    color: #ffffff;
+  }
+  
+  /* Style for even rows in the table */
+  table tr:nth-child(even) {
+    background-color: #1c1c1c;
+  }
+  
+  /* Hover style for table rows */
+  table tr:hover {
+    background-color: #404040;
+  }
+  
+  button {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border: none; /* Remove the border from all buttons */
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  button:hover {
+    background-color: #404040;
+  }
+  
+  /* Specific style for the "Edit" and "Delete" buttons inside the table */
+  .booksTable button {
+    margin: 5px 5px; /* Add margin around the buttons to separate them from the data */
+  }
+  /* Style for the images */
+  img {
+    max-width: 100px; /* Adjust the size of the image (maximum width) */
+    max-height: 100px; /* Adjust the size of the image (maximum height) */
+    display: block; /* Remove any extra space around the image */
+    margin: 0 auto; /* Center the image horizontally within the table cell */
+  }
+  
+  /* Style for the "Authorname" column in the book table */
+  .booksTable td:nth-child(9) { /* Adjust the index to target the correct column */
+    min-width: 150px; /* Set a minimum width for the Authorname column */
+  }
+  

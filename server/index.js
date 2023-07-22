@@ -653,3 +653,66 @@ app.post('/custcom/update/img', (req, res) => {
 
 
 
+ 
+
+
+
+
+
+app.post('/custcom/inven/delete',(req,res)=>{
+  const{ pid, category}= req.body;
+  const query =`DELETE FROM ${category}  WHERE pid = ${pid}`;
+  connection.query( query,(err,result)=>{
+    if (err) {
+      console.error('Error inserting data into the table:', err);
+      return res.sendStatus(500);
+      
+    }
+    res.send("Successfully deleted");
+
+  });
+
+
+});
+
+app.post('/custcom/inven/update', (req, res) => {
+
+  console.log(req.body);
+  inv_upload(req, res, (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      const response = {};
+      const { pid, pname, price, img_name, offer, mrp, desc, rating, stock, category } = req.body;
+      response.body = req.body;
+      response.file = req.body.img;
+
+      console.log("Body:", req.body);
+      console.log("File:", req.file);
+
+      const query = `UPDATE ${category} 
+                     SET pname = ?, 
+                         img = ?, 
+                         price = ?, 
+                         offer = ?, 
+                         mrp = ?, 
+                         \`desc\` = ?, 
+                         rating = ?, 
+                         stock = ? 
+                     WHERE pid = ?`;
+
+      connection.query(
+        query,
+        [pname, img_name, price, offer, mrp, desc, rating, stock, pid],
+        (err, response) => {
+          if (err) {
+            console.error('Error updating data in the table:', err);
+            return res.sendStatus(500);
+          }
+          res.send(response);
+        }
+      );
+    }
+  });
+});
+

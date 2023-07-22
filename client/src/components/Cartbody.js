@@ -44,7 +44,7 @@ const Cartbody = (props) => {
       });
   }, [add]);
 
-
+console.log(data);
 
   const setSrcprod = (data, name, category) => {
     const element = data.find(obj => obj.pid === name);
@@ -121,9 +121,10 @@ return (
         {data.cart.map((cartItem, index) => {
           const { pid, quantity, category } = cartItem;
           const inventoryArr = data.inventory;
+          console.log("inven arr",inventoryArr);
 
           const inventoryItem = inventoryArr.find(item => item[0].pid === pid);
-
+          console.log("inven",inventoryItem);
           if (inventoryItem) {
             const { pname, price, authorname } = inventoryItem[0];
 
