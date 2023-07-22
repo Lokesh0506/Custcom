@@ -44,6 +44,17 @@ const setStylecart = (data, name ) => {
     return null;
   };
 
+  const setDivColor = (data,name) => {
+   
+    const element = data.find(obj => obj.id === name);
+    console.log(name,element);
+    if (element) {
+      return element['bg_color'];
+        }
+    
+  return null;
+};
+
   const setHref = (data,name) => {
       
     const element = data.find(obj => obj.id === name);
@@ -60,7 +71,7 @@ const setStylecart = (data, name ) => {
 
     if (element) {
 
-      return require("./"+element['src']);
+      return require('./images/'+element['src']);
         }else{
           return 'no img';
   }
@@ -76,7 +87,7 @@ const setSrcprod = (data,name) => {
 }
 };
 
-export {setStyle,setContent,setHref,setSrc,setSrcprod,setStylecart};
+export {setStyle,setContent,setHref,setSrc,setSrcprod,setStylecart,setDivColor};
 
 
 

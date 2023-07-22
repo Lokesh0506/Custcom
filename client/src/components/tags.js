@@ -44,6 +44,12 @@ const IMG = (props) => {
      )
 };
 
+const AIMG = (props) => {
+  return (
+       <img id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} src={props.src} style={props.style}/>
+     )
+};
+
 const BUTTON = (props) => {
   return (
        <button tagtype="button" id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} type={props.type}  onClick={props.onClick} style={props.style}>{props.value}</button>
@@ -52,7 +58,7 @@ const BUTTON = (props) => {
 
 
 
-export  {H1,H2,H3,P,A,IMG,BUTTON} ;
+export  {H1,H2,H3,P,A,IMG,BUTTON,AIMG,handleHover} ;
 
 
 

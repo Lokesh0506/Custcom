@@ -4,6 +4,7 @@ import './body.css';
 import { setStyle, setContent, setHref, setSrc } from './dbfunctions';
 import Axios from 'axios';
 import PrdDiv from './prd_div';
+import { handleHover } from './tags';
 
 
 const CategoryBody = (props) => {
@@ -78,7 +79,7 @@ const CategoryBody = (props) => {
 
 
   return (
-    <div>
+    <div onDoubleClick={() => handleHover(`${props.category}_body`, props.enableHover)}>
       {fontfetch(data)}
       <IMG enableHover={props.enableHover} id="ad_banner" src={setSrc(data, `ad_ban${currentIndex + 1}`)} style={imgStyle} />
       <br />

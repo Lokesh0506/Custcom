@@ -30,7 +30,7 @@ border-radius: 20px;
 height: 800px;
 width: 100%;
 margin: 0px;
-background-image: url("purple.jpg");
+background-image: url("./components/images/purple.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 

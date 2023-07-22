@@ -73,7 +73,13 @@
   a[id="cart"] {
     margin-top: 3%;
   }
-  
+
+  a[id="home"] {
+    margin-top: -2%;
+  }
+  p[id="category"]{
+    margin-top: 40%;
+  }
   .category_drpdwn a {
     padding: 10px;
     text-decoration: none;
@@ -96,10 +102,21 @@
   .category_div:hover .category_drpdwn {
     display: block;
   }
-  #cartimg{
+  #cart_img{
     height:40px;
      width:50px;
      padding-bottom:40px;
+  }
+  
+  #home_img{
+    height:70px;
+     width:70px;
+  }
+
+  #home{
+    display: inline-flex;
+    align-items: baseline;
+   
   }
   
   #cart{

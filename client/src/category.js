@@ -3,6 +3,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import CategoryBody from './components/categorybody';
 import { useLocation } from 'react-router-dom';
+import { handleHover } from './components/tags';
 
 
 function Category(props) {
@@ -19,11 +20,12 @@ function Category(props) {
       setHover(true);
     }
   }, []); 
+  console.log("props",props.header_color);
   return (
     <div style={{backgroundColor:props.bg_color}} className="App">
-      <Header bg_color={props.header_color} enableHover={enableHover}/>
-      <CategoryBody  category={props.category} enableHover={enableHover}/>
-      <Footer enableHover={enableHover}/>
+      <Header bg_color={props.header_color} category={props.category} enableHover={enableHover}/>
+      <CategoryBody  category={props.category}  enableHover={enableHover}/>
+      <Footer bg_color={props.footer_color} category={props.category}  enableHover={enableHover}/>
     </div>
   );
 }

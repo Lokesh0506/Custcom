@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { H1, H2, H3, IMG, P, A } from './tags';
+import { H1, H2, H3, IMG, P, A, AIMG } from './tags';
 import './header.css';
 import { setStyle, setContent, setHref, setSrc,setSrcprod } from './dbfunctions';
 import Axios from 'axios';
+import { handleHover } from './tags';
 
 const Header = (props) => {
   const [data, setData] = useState([]);
@@ -36,22 +37,22 @@ const Header = (props) => {
   const st = { backgroundColor: props.bg_color };
 
   return (
-    <div style={st} className='header'>
+    <div style={st} className='header' onDoubleClick={() => handleHover(`${props.category}_header`, props.enableHover)} >
       {fontfetch(data)}
       <IMG enableHover={props.enableHover} id="logo" src={setSrc(data, 'logo')} style={setStyle(data, 'sub-title')} />
       <H1 id="title" enableHover={props.enableHover} content={setContent(data, 'title')} style={setStyle(data, 'title')} />
 
       <div className="nav">
-        <A href={`/home?enable=${props.enableHover}`} enableHover={props.enableHover} content={setContent(data, 'home')} style={setStyle(data, 'home')} />
+        <A id='home' href={`/home?enable=${props.enableHover}`} enableHover={props.enableHover} content={<AIMG enableHover={props.enableHover} id="home_img" src={setSrc(data, 'home_img')} />} style={setStyle(data, 'home')} />
         <div className="category_div">
-          <A className="category_a" enableHover={props.enableHover} href={setHref(data, "category")} content={setContent(data, 'category')} style={setStyle(data, 'category')} />
+          <P id="category" className="category_a" enableHover={props.enableHover}  content={setContent(data, 'category')} style={setStyle(data, 'category')} />
           <div className="category_drpdwn">
             <a href={`/grocery?enable=${props.enableHover}`}>Grocery</a><br />
             <a href={`/electronic?enable=${props.enableHover}`}>Electronics</a><br />
             <a href={`/books?enable=${props.enableHover}`}>Books</a><br />
           </div>
         </div>
-        <A id="cart" enableHover={props.enableHover} href={`/cart?enable=${props.enableHover}`} content={<IMG id="cartimg" src={setSrc(data, 'cart_img')} />} />
+        <A id="cart"  href={`/cart?enable=${props.enableHover}`} content={<AIMG enableHover={props.enableHover} id="cart_img" src={setSrc(data, 'cart_img')} />} />
       </div>
     </div>
   );

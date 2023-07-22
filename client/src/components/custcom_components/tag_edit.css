@@ -1,0 +1,65 @@
+
+.tag_edit {
+  border: 1px solid #ffffff33 ;
+  border-radius: 10px;
+  padding: 20px;
+  align-items: center;
+  margin-left: -35%;
+  color: whitesmoke;
+  background-image: url(./images/tag_edit_bg.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+.tag_edit input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 16px;
+  background-color: #444;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.tag_edit button {
+  background-color: #444;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.tag_edit button[id="save"]{
+  background-color: #1f6feb;
+  color: #e0e5eb;
+}
+
+.tag_edit button[id="reset"]{
+  background-color:#444;
+  color: #e0e5eb;
+}
+
+.colorpicker {
+  top: 100%;
+  top: 40px;
+  left: 0;
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  width: fit-content;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+
+}
+
+
+

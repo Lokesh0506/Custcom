@@ -3,6 +3,10 @@ import Axios from 'axios';
 import H_edit from './h_edit';
 import Button_edit from './button_edit';
 import P_edit from './p_edit';
+import Img_edit from './img_edit';
+import A_edit from './a_edit';
+import Div_edit from './div_edit';
+import styles from './custcom_edit.module.css';
 
 function Custcomedit(props) {
   
@@ -14,8 +18,16 @@ function Custcomedit(props) {
   const[P,setP]=useState(false);
   const[A,setA]=useState(false);
   const[Button,setButton]=useState(false);
-  const[DefaultMsg,setDefaultMsg]=useState(false);
+  const[Div,setDiv]=useState(false);
+  const[DefaultMsg,setDefaultMsg]=useState(true);
   const [fetchData, setfetchData] = useState('unfetch');
+
+  useEffect(() => {
+    document.body.classList.add(styles['custcom_edit']);
+    return () => {
+      document.body.classList.remove(styles['custcom_edit']);
+    };
+  }, []);
 
   useEffect(() => {
   
@@ -55,7 +67,6 @@ function Custcomedit(props) {
   useEffect(() => {
     
     console.log('Updated currentId:', currentId);
-    document.getElementById("tagid").innerHTML = currentId;
     const detail = data.find(item => item.id === currentId);
    // console.log(detail);
     setCurrentData(detail);
@@ -71,9 +82,10 @@ function Custcomedit(props) {
       setP(currentData?.type === 'p');
       setImg(currentData?.type === 'img');
       setA(currentData?.type === 'a');
+      setDiv(currentData?.type === 'div');
       setButton(['submit','reset','button'].includes(currentData?.type));
       setDefaultMsg(
-        !['h1', 'p', 'img', 'a', 'button'].includes(currentData?.type)
+        !['h1',,'h2','h3','h4','h5','h6', 'p', 'img','submit','reset', 'a', 'button',"div"].includes(currentData?.type)
       );
     }
   }, [currentData]);
@@ -86,13 +98,13 @@ function Custcomedit(props) {
         <iframe src={`http://localhost:3000/home?mobno=admin&enable=true`} title="Infinix" width="800" height="1000"></iframe>
       </div>
       <div style={{ float: 'right', width: '25%' }}>
-        <h1 id="tagid">custcom</h1>  
         <br/>
         {H &&  <H_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {P && <P_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {Img && <h1>IMG</h1>}
-        {A && <h1>A</h1>}
+        {Img && <Img_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
+        {A && <A_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {Button && <Button_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
+        {Div &&  <Div_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {DefaultMsg && <h1>DefaultMsg</h1>}
 
        

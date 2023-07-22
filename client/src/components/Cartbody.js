@@ -99,7 +99,7 @@ function inputval(pid){
 
 }
 
-const fontfetch = (data) => {
+/*const fontfetch = (data) => {
   const fontLinks = data.map((fontStyle) => {
     const { font_family } = fontStyle;
     if (font_family) {
@@ -111,11 +111,11 @@ const fontfetch = (data) => {
   });
 
   return fontLinks;
-};
-
+};*/
+console.log(data);
 return (
   <div className='Cartpage'>
-    {fontfetch(data)}
+    
     {data.cart && data.cart.length > 0 && data.inventory && data.inventory.length > 0 && (
       <div>
         {data.cart.map((cartItem, index) => {

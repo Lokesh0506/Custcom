@@ -41,7 +41,7 @@ const PrdDiv = (props) => {
 
 <div className="prd_div">
   <div className="product-info">
-    <IMG id="prd_img" enableHover={props.enableHover} style={setStyle(props.data , 'prd_img')} src={props.prd_img} />
+    <IMG id="prd_img"  style={setStyle(props.data , 'prd_img')} src={props.prd_img} />
     <div className="product-details">
       <H2 id="prd_name" enableHover={props.enableHover} style={setStyle(props.data, 'prd_name')} content={props.prd_name} />
       <div className="price-section">

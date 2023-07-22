@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ChromePicker } from 'react-color';
 import Axios from 'axios';
+import './tag_edit.css';
 
-const H_edit = (props) => {
+const A_edit = (props) => {
     const [data, setData] = useState({});
     const [color, setColor] = useState('');
     const [bgcolor, setBgColor] = useState('');
     const [fontStyles, setFontStyles] = useState([]);
     const [selectedFont, setSelectedFont] = useState(props.details.font_family);
     const [selectedStyle, setSelectedStyle] = useState(props.details.text_decoration);
+    const [colorPickerVisible, setColorPickerVisible] = useState("false");
+    const [bgcolorPickerVisible, setbgColorPickerVisible] = useState("false");
 
     useEffect(() => {
         setData(props.details);
@@ -89,24 +92,24 @@ const H_edit = (props) => {
     };
 
     return (
-        <div className='h_edit'>
+        <div className='tag_edit'>
 
             {fontStyles.map((fontStyle) => (
                 <link key={fontStyle.family} rel="stylesheet" href={"https://fonts.googleapis.com/css?family=" + fontStyle.family} />
             ))}
-            <form name='h_edit'>
-                <label>Tag Type : {data.type}</label><br />
-                <label>Tag ID : {data.id}</label><br />
-                <label>Content : <input type='text' id='content' defaultValue={data.content} /></label><br />
+            <form name='a_edit'>
+                <label>Tag Type : {data.type}</label><br/><br/>
+                <label>Tag ID : {data.id}</label><br/><br/>
+                <label>Content : <input type='text' id='content' defaultValue={data.content} /></label><br/><br/>
                 <label>
-                    Colour: <input type="text" id='color' value={color} onChange={(e) => setColor(e.target.value)} />
-                    <div ><ChromePicker color={color} onChange={handlecolorChange} /></div>
-                </label><br />
+                    Colour: <input type="text" id='color' defaultValue={color} onChange={(e) => setColor(e.target.value)}  onFocus={()=>{setColorPickerVisible("true");}}  />
+                    {colorPickerVisible==="true" && <div className='colorpicker'><ChromePicker color={color} onChange={handlecolorChange} /></div>}
+                </label><br/><br/>
                 <label>
-                    Background Colour : <input type='text' id='bg_color' defaultValue={bgcolor} onChange={(e) => setBgColor(e.target.value)} />
-                    <div ><ChromePicker color={bgcolor} onChange={handlebgChange} /></div>
-                </label><br />
-                <label>Font Size : <input type='text' id='font_size' defaultValue={data.font_size} /></label><br />
+                    Background Colour : <input type='text' id='bg_color' defaultValue={bgcolor} onChange={(e) => setBgColor(e.target.value)} onFocus={()=>{setbgColorPickerVisible("true");}} />
+                    {bgcolorPickerVisible==="true"&&<div className='colorpicker'><ChromePicker color={bgcolor} onChange={handlebgChange} /></div>}
+                </label><br/><br/>
+                <label>Font Size : <input type='text' id='font_size' defaultValue={data.font_size} /></label><br/><br/>
                 <label>
                     Font Family:
                     <select style={{ fontFamily: selectedFont }} value={selectedFont} id='font_family' onChange={handleFontChange}>
@@ -115,9 +118,10 @@ const H_edit = (props) => {
                             <option key={fontStyle.family} style={{ fontFamily: fontStyle.family }} value={fontStyle.family}>
                                 {fontStyle.family}
                             </option>
+                        
                         ))}
                     </select>
-                </label><br />
+                </label><br/><br/>
                 <label>
                     Text Decoration:
                     <select id='text_dec' value={selectedStyle}>
@@ -128,10 +132,10 @@ const H_edit = (props) => {
                         <option value="line-through" style={{ textDecoration: 'line-through' }}>Line-through</option>
                     </select>
                 </label>
-                <br />
+                <br/><br/>
 
-                <button type='submit' onClick={updateDB}>Save</button>
-                <button type='submit' onClick={setDefault}>Reset</button>
+                <button id="save" type='submit' onClick={updateDB}>Save</button>
+                <button id="reset" type='submit' onClick={setDefault}>Reset</button>
 
             </form>
 
@@ -140,5 +144,5 @@ const H_edit = (props) => {
 
 }
 
-export default H_edit;
+export default A_edit;
 
