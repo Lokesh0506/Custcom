@@ -41,7 +41,7 @@ const Header = (props) => {
       {fontfetch(data)}
       <IMG enableHover={props.enableHover} id="logo" src={setSrc(data, 'logo')} style={setStyle(data, 'sub-title')} />
       <H1 id="title" enableHover={props.enableHover} content={setContent(data, 'title')} style={setStyle(data, 'title')} />
-
+      
       <div className="nav">
         <A id='home' href={`/home?enable=${props.enableHover}`} enableHover={props.enableHover} content={<AIMG enableHover={props.enableHover} id="home_img" src={setSrc(data, 'home_img')} />} style={setStyle(data, 'home')} />
         <div className="category_div">
@@ -53,7 +53,10 @@ const Header = (props) => {
           </div>
         </div>
         <A id="cart"  href={`/cart?enable=${props.enableHover}`} content={<AIMG enableHover={props.enableHover} id="cart_img" src={setSrc(data, 'cart_img')} />} />
+        {props.enableHover ? <A id="logout"   content={<AIMG enableHover={props.enableHover} id="logout_img" src={setSrc(data, 'logout_img')} />} />:<A id="logout"  href={`/`} content={<AIMG enableHover={props.enableHover} id="logout_img" src={setSrc(data, 'logout_img')} />} />}
+
       </div>
+
     </div>
   );
 };

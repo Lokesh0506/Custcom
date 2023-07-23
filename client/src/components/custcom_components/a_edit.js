@@ -73,8 +73,13 @@ const A_edit = (props) => {
 
 
     const setDefault = () => {
-        alert("default")
+    
+        var result = window.confirm("Do you want to Reset?");
+        if (result === true) {
+            window.location.reload();
+
     }
+}
 
 
 
@@ -135,7 +140,7 @@ const A_edit = (props) => {
                 <br/><br/>
 
                 <button id="save" type='submit' onClick={updateDB}>Save</button>
-                <button id="reset" type='submit' onClick={setDefault}>Reset</button>
+                <button id="reset" type='button' onClick={setDefault}>Reset</button>
 
             </form>
 

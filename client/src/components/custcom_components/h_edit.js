@@ -74,11 +74,15 @@ const H_edit = (props) => {
     };
 
 
+  
     const setDefault = () => {
-        alert("default")
+    
+        var result = window.confirm("Do you want to Reset?");
+        if (result === true) {
+            window.location.reload();
+
     }
-
-
+}
 
 
     const handleFontChange = (event) => {

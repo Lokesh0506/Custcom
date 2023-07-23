@@ -29,6 +29,9 @@ const PrdDiv = (props) => {
     .then(response => {
     
       console.log(response.data);
+      if(response){
+        alert("Added to Cart 🛒");
+      }
     })
     .catch(error => {
      

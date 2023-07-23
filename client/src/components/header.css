@@ -77,6 +77,11 @@
   a[id="home"] {
     margin-top: -2%;
   }
+
+  a[id="logout"] {
+    margin-top: -0.5%;
+    margin-left: -5%;
+  }
   p[id="category"]{
     margin-top: 40%;
   }
@@ -107,6 +112,11 @@
      width:50px;
      padding-bottom:40px;
   }
+
+  #logout_img{
+    height:65px;
+     width:50px;
+  }
   
   #home_img{
     height:70px;
@@ -120,6 +130,10 @@
   }
   
   #cart{
+    display: inline-flex;
+  }
+
+  #logout{
     display: inline-flex;
   }
   
