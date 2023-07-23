@@ -545,7 +545,7 @@ app.get('/custcom/inven', (req, res) => {
 
 const inv_storage = multer.diskStorage({
   destination: (req, file, cb) => {
-   console.log(req);
+   
     let uploadPath = path.join(__dirname, '../client/src/components/inventory_imgs/others');
     if (req.body.category === 'books') {
       uploadPath = path.join(__dirname, '../client/src/components/inventory_imgs/books');
@@ -599,7 +599,7 @@ app.post('/custcom/inven/add', (req, res) => {
         return res.sendStatus(500);
         
       }
-      res.sendStatus(200).send("Successfully added");
+      res.send("Successfully added");
       connection.end();
       
     }
@@ -670,6 +670,13 @@ app.post('/custcom/update/img', (req, res) => {
 
 
 app.post('/custcom/inven/delete',(req,res)=>{
+
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'inventory',
+  });
   const{ pid, category}= req.body;
   const query =`DELETE FROM ${category}  WHERE pid = ${pid}`;
   connection.query( query,(err,result)=>{
@@ -678,16 +685,22 @@ app.post('/custcom/inven/delete',(req,res)=>{
       return res.sendStatus(500);
       
     }
+    connection.end();
     res.send("Successfully deleted");
-
+    
   });
 
 
 });
 
 app.post('/custcom/inven/update', (req, res) => {
+  const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'inventory',
+  });
 
-  console.log(req.body);
   inv_upload(req, res, (err) => {
     if (err) {
       res.send(err);
@@ -719,7 +732,9 @@ app.post('/custcom/inven/update', (req, res) => {
             console.error('Error updating data in the table:', err);
             return res.sendStatus(500);
           }
+          connection.end();
           res.send(response);
+          
         }
       );
     }

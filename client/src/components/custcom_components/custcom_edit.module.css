@@ -1,6 +1,18 @@
+
 body.custcom_edit {
-    background-color: #0d1117;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #ffffff33 ;
-  }
+
+  color: azure;
+  background-color: #0d1117;
+  margin:0;
+  margin-left:-4px ;
+  padding: 0;
+  border: 1px solid #ffffff33;
+}
+
+.instruction-box {
+  padding: 20px;
+  background-color: #ffffff; /* Replace with the background color you desire */
+  border: 1px solid #dddddd; /* Replace with the border color you desire */
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}

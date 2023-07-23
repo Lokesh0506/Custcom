@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './custcom_inven_show.module.css';
 import "./custcom_show.css";
+import Custcomheader from './custcomheader';
+
 const ViewInventory = (props) => {
   console.log(props.inventoryData);
   const [edit, setEdit] = useState(0);
@@ -22,7 +24,9 @@ const ViewInventory = (props) => {
 
  
   const handleDelete = (pid, category) => {
-    axios
+    var result = window.confirm("Do you want to Delete?");
+    if (result === true) {
+      axios
       .post('http://localhost:8080/custcom/inven/delete', { pid, category })
       .then(response => {
         console.log('deleted successfully:', response);
@@ -30,13 +34,11 @@ const ViewInventory = (props) => {
       })
     console.log(`Delete button clicked for product ID: ${pid}`);
     window.location.reload();
+    } 
+  
+   
   };
-  const handleInputChange = (e, pid) => {
-    
- 
-          
- 
-  };
+  
   const noneditable = (item) => {
     
     return (
@@ -95,12 +97,13 @@ const ViewInventory = (props) => {
       .then(response => {
         console.log('Inventory updated successfully', response);
         setEdit(0);
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error adding inventory:', error);
       });
   }
-  
+   
 
 
 
@@ -174,9 +177,11 @@ const ViewInventory = (props) => {
         </tr>
     );
   }
-  
+  const inventoryLink = '/custcom/inventory/add'; 
 
   return (
+    <div>
+    <Custcomheader bg_color="black" inventoryImage="add" inventoryLink={inventoryLink} />
     <div className='inven_show'>
       <h2>Books</h2>
       <table className="booksTable">
@@ -247,7 +252,7 @@ const ViewInventory = (props) => {
           )}
         </tbody>
       </table>
-    </div>
+    </div></div>
   );
 };
 

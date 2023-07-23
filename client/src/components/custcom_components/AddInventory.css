@@ -1,55 +1,80 @@
 
 
 .add-inventory-container {
-
-  background-color: #1f1f1f;
+  background-color: rgba(59, 59, 59, 0.67);
   color: #eaeaea;
   font-family: Arial, sans-serif;
+  width: fit-content;
+  margin: 5% 30%;
+  border-radius: 20px;
 }
 
 .add-inventory-container h1 {
   text-align: center;
-  margin: 2% 40%;
+  margin: 5% 20%;
   display: inline;
 }
 
-.add-inventory-container form {
-  max-width: 500px;
-  margin: 100px auto;
-  padding: 20px;
-  background-color: #353535;
-  border-radius: 5px;
-}
+
 
 .add-inventory-container label {
   display: block;
+  margin-left: 60px;
   margin-bottom: 5px;
 }
 
 .add-inventory-container input,
 .add-inventory-container select {
-  width: 100%;
+
   padding: 10px;
+  width: 75%;
+  margin-left: 50px;
   margin-bottom: 15px;
   background-color: #2f2f2f;
   color: #eaeaea;
-  border: none;
-  border-radius: 3px;
+  border:2px solid whitesmoke;
+  border-radius: 10px;
+}
+
+.add-inventory-container select{
+  width: 80%;
 }
 
 .add-inventory-container input[type="file"] {
   border: 1px solid #444;
   background-color: #2f2f2f;
   cursor: pointer;
+  color: #eaeaea;
+  border:2px solid whitesmoke;
+  border-radius: 10px;
+  padding: 10px;
+  width: 75%;
+  margin-left: 50px;
+  margin-bottom: 15px;
 }
 
 .add-inventory-container button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background: linear-gradient(to top right, rgb(0, 51, 255), pink);
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 25px;
   cursor: pointer;
+  margin: 5% 30%;
+}
+
+.add-inventory-container input[type='file']::file-selector-button {
+  padding: 8px;
+  background: linear-gradient(252deg, #1b1bb6, #7830c0);
+  border: 1px solid rgba(255, 255, 255, .25);
+  color: white;
+  font-family: termina, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .add-inventory-container button:hover {
