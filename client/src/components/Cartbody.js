@@ -22,7 +22,7 @@ const Cartbody = (props) => {
         const cartStyle = response.data.cartStyle;
         const cartItems = response.data.cart;
         const totalPrice = cartItems.reduce((sum, item) => {
-          const inventoryItem = response.data.inventory.find(i => i[0].pid === item.pid);
+          const inventoryItem = response.data?.inventory.find(i => i[0].pid === item.pid);
           if (inventoryItem) {
             const price = inventoryItem[0].price;
             return sum + price * item.quantity;

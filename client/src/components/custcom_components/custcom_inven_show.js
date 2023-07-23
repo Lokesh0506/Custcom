@@ -50,9 +50,10 @@ const ViewInventory = (props) => {
             <img src={require(`../inventory_imgs/${item.category}/${item.img}`)} alt={item.pname} />
           </td>
           <td>
-            {item.price}
+            ₹{item.price}
           </td>
-          <td>{item.offer}</td>
+          <td>₹{item.mrp}</td>
+          <td>{item.offer}%</td>
           <td>{item.desc}</td>
           <td>{item.rating}</td>
           <td>{item.stock}</td>
@@ -84,6 +85,8 @@ const ViewInventory = (props) => {
   
   
     formData.append(`price`, document.getElementsByName(`${pid}_price`)[0].value);
+    formData.append(`desc`, document.getElementsByName(`${pid}_desc`)[0].value);
+    formData.append(`mrp`, document.getElementsByName(`${pid}_mrp`)[0].value);
     formData.append(`offer`, document.getElementsByName(`${pid}_offer`)[0].value);
     formData.append(`rating`, document.getElementsByName(`${pid}_rating`)[0].value);
     formData.append(`stock`, document.getElementsByName(`${pid}_stock`)[0].value);
@@ -129,7 +132,14 @@ const ViewInventory = (props) => {
             <input
               type='text'
               name={`${item.pid}_price`}
-              defaultValue={item.price}
+              defaultValue={'₹'+item.price}
+            />
+          </td>
+          <td>
+            <input
+              type='text'
+              name={`${item.pid}_mrp`}
+              defaultValue={item.mrp}
             />
           </td>
           <td>
@@ -141,7 +151,7 @@ const ViewInventory = (props) => {
           </td>
           <td>
             <textarea 
-            name={`${item.pid}_description`}
+            name={`${item.pid}_desc`}
             defaultValue={item.desc} 
             rows="4" cols="50" />
           </td>
@@ -191,6 +201,7 @@ const ViewInventory = (props) => {
             <th>Book name</th>
             <th>Book Image </th>
             <th>Price</th>
+            <th>MRP</th>
             <th>Offer</th>
             <th>Description</th>
             <th>Rating</th>
@@ -215,6 +226,7 @@ const ViewInventory = (props) => {
             <th>Name</th>
             <th>Image </th>
             <th>Price</th>
+            <th>MRP</th>
             <th>Offer</th>
             <th>Description</th>
             <th>Rating</th>
@@ -238,6 +250,7 @@ const ViewInventory = (props) => {
             <th>Name</th>
             <th>Image </th>
             <th>Price</th>
+            <th>MRP</th>
             <th>Offer</th>
             <th>Description</th>
             <th>Rating</th>
