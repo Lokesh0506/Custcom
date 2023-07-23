@@ -7,6 +7,7 @@ import Img_edit from './img_edit';
 import A_edit from './a_edit';
 import Div_edit from './div_edit';
 import styles from './custcom_edit.module.css';
+import "./tag_edit.css";
 
 function Custcomedit(props) {
   
@@ -91,7 +92,31 @@ function Custcomedit(props) {
   }, [currentData]);
   
 
+  const renderDefaultMessage = () => {
+    return (
+      <div className='instruction-box'>
+        <h1 style={{textAlign:"left"}}>Please select an item to edit</h1>
+        <p>
+         <h2> Instructions:</h2>
+          <br />
+          - To edit the header, double click on it.
+          <br />  <br />
+          -To edit the home icon and cart icon , just hover on it.
+          < br/>  <br />
+          -To edit your company's logo, name and category just single click on it.
+          <br/>  <br />
+          -For changing the add banners, click on the add banners that you want to change and upload the image of the new add banner.
+          <br/>  <br />
+          -To change the background color for your homepage, click on the body.
+          <br/>  <br /> 
+          - Similarly you can change the styles of the product name, price, mrp by just single clicking on it.
+          <br/>  <br /> - Button can be modified by just hovering on it.
+          <br/>  <br />- Inventory can be added, updated , deleted by going to the inventory option on the top right.
 
+        </p>
+      </div>
+    );
+  };
   return (
     <div className='custcom_edit'>
       <div style={{ float: 'left', width: '75%' }}>
@@ -99,13 +124,14 @@ function Custcomedit(props) {
       </div>
       <div style={{ float: 'right', width: '25%' }}>
         <br/>
+        {DefaultMsg && !currentData && renderDefaultMessage()}
         {H &&  <H_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {P && <P_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {Img && <Img_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {A && <A_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {Button && <Button_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
         {Div &&  <Div_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {DefaultMsg && <h1>DefaultMsg</h1>}
+
 
        
       </div>

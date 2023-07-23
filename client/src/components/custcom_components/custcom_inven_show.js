@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './custcom_inven_show.module.css';
 import "./custcom_show.css";
+import Custcomheader from './custcomheader';
+import addImage from './images/add.jpg';
 const ViewInventory = (props) => {
   console.log(props.inventoryData);
   const [edit, setEdit] = useState(0);
@@ -100,7 +102,7 @@ const ViewInventory = (props) => {
         console.error('Error adding inventory:', error);
       });
   }
-  
+   
 
 
 
@@ -176,9 +178,11 @@ const ViewInventory = (props) => {
       </div>
     );
   }
-  
+  const inventoryLink = '/custcom/inventory/add'; 
 
   return (
+    <div>
+    <Custcomheader bg_color="black" inventoryImage="add" inventoryLink={inventoryLink} />
     <div className='inven_show'>
       <h2>Books</h2>
       <table className="booksTable">
@@ -249,7 +253,7 @@ const ViewInventory = (props) => {
           )}
         </tbody>
       </table>
-    </div>
+    </div></div>
   );
 };
 

@@ -7,9 +7,11 @@ const Custcomhome = ()=>{
         //alert("reload in custhome");
         window.location.reload();
     }
+    const inventoryImage = "./images/inventory.png"; 
+    const inventoryLink = '/custcom/inventory'; 
     return(
         <div>
-            <Custcomheader bg_color="black" />
+            <Custcomheader bg_color="black" inventoryImage={"show"} inventoryLink={inventoryLink} />
             <Custcomedit reload={reload}/>
         </div>
     )
