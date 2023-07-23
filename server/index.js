@@ -185,12 +185,12 @@ app.get("/cart", (req, res) => {
     user: "root",
     password: "root",
     host: "localhost",
-    database: "cartbody",
+    database: "homepage",
   });
 
   const response = {};
 
-  cartstyle.query("SELECT * FROM body", (err, cartStyle) => {
+  cartstyle.query("SELECT * FROM cartbody", (err, cartStyle) => {
     if (err) {
       console.log(err);
       cartStyle.end();
@@ -380,7 +380,7 @@ app.post("/custcom", (req, res) => {
     host: "localhost",
     database: "homepage",
   });
-
+ 
 
 
 
@@ -416,10 +416,20 @@ app.post("/custcom", (req, res) => {
             return;
           }
           response.push(...divResult);
+
+          struct.query('SELECT * FROM cartbody', (err, cartbodyResult) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send('Internal Server Error');
+              return;
+            }
+            response.push(...cartbodyResult);
   
 
         res.send(response);
         struct.end();
+
+          });
 
       });
     });

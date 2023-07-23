@@ -38,12 +38,13 @@ select {
 }
 
 .tag_edit button[id="save"]{
-  background-color: #1f6feb;
+  background: linear-gradient(to top right,#1f6feb ,rgb(42, 219, 198));
   color: #e0e5eb;
 }
 
 .tag_edit button[id="reset"]{
   background-color:#444;
+  background: linear-gradient(to top right,#444 ,rgb(158, 185, 182));
   color: #e0e5eb;
 }
 

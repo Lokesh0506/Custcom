@@ -8,8 +8,8 @@ const Button_edit = (props) => {
     const [color, setColor] = useState('');
     const [bgcolor, setBgColor] = useState('');
     const [fontStyles, setFontStyles] = useState([]);
-    const [selectedFont, setSelectedFont] = useState(props.details.font_family);
-    const [selectedStyle, setSelectedStyle] = useState(props.details.text_decoration);
+    const [selectedFont, setSelectedFont] = useState(props.details?.font_family);
+    const [selectedStyle, setSelectedStyle] = useState(props.details?.text_decoration);
     const [colorPickerVisible, setColorPickerVisible] = useState("false");
     const [bgcolorPickerVisible, setbgColorPickerVisible] = useState("false");
 
@@ -95,7 +95,7 @@ const Button_edit = (props) => {
         <div className='tag_edit'>
 
             {fontStyles.map((fontStyle) => (
-                <link key={fontStyle.family} rel="stylesheet" href={"https://fonts.googleapis.com/css?family=" + fontStyle.family} />
+                <link key={fontStyle?.family} rel="stylesheet" href={"https://fonts.googleapis.com/css?family=" + fontStyle.family} />
             ))}
             <form name='button_edit'>
                 <label>Tag Type : {data.type}</label><br/><br/>

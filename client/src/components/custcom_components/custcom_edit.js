@@ -9,17 +9,17 @@ import Div_edit from './div_edit';
 import styles from './custcom_edit.module.css';
 
 function Custcomedit(props) {
-  
+
   const [currentId, setcurrentId] = useState("");
   const [currentData, setCurrentData] = useState(null);
   const [data, setData] = useState([]);
-  const[H,setH]=useState(false);
-  const[Img,setImg]=useState(false);
-  const[P,setP]=useState(false);
-  const[A,setA]=useState(false);
-  const[Button,setButton]=useState(false);
-  const[Div,setDiv]=useState(false);
-  const[DefaultMsg,setDefaultMsg]=useState(true);
+  const [H, setH] = useState(false);
+  const [Img, setImg] = useState(false);
+  const [P, setP] = useState(false);
+  const [A, setA] = useState(false);
+  const [Button, setButton] = useState(false);
+  const [Div, setDiv] = useState(false);
+  const [DefaultMsg, setDefaultMsg] = useState(true);
   const [fetchData, setfetchData] = useState('unfetch');
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function Custcomedit(props) {
   }, []);
 
   useEffect(() => {
-  
+
     Axios.post('http://localhost:8080/custcom')
       .then(response => {
         setData(response.data);
@@ -43,8 +43,8 @@ function Custcomedit(props) {
 
   useEffect(() => {
     const handleIframeMessage = (event) => {
-     
-      if (event.data.source !== 'react-devtools-backend-manager'&& event.data.source !== 'react-devtools-content-script' && event.data.source !== 'react-devtools-bridge' && event.data.source !== 'webpackHotUpdate0f2f57a53098bcc82dfc' ) {
+
+      if (event.data.source !== 'react-devtools-backend-manager' && event.data.source !== 'react-devtools-content-script' && event.data.source !== 'react-devtools-bridge' && event.data.source !== 'webpackHotUpdate0f2f57a53098bcc82dfc') {
         setcurrentId(event.data);
       }
     };
@@ -57,7 +57,7 @@ function Custcomedit(props) {
   }, []);
 
   const handleDataUpdate = () => {
-    
+
     setfetchData(prevState => prevState === 'fetch' ? 'unfetch' : 'fetch');
     props.reload();
     //alert("reload in custedit");
@@ -65,49 +65,54 @@ function Custcomedit(props) {
   };
 
   useEffect(() => {
-    
-    console.log('Updated currentId:', currentId);
-    const detail = data.find(item => item.id === currentId);
-   // console.log(detail);
-    setCurrentData(detail);
-    if(!detail){
-      setCurrentData(null);
+    if(currentId !== null){
+      console.log('Updated currentId:', currentId);
+      const detail = data.find(item => item.id === currentId);
+       
+      setCurrentData(detail);
+      if (detail=== undefined || detail=== null) {
+        setCurrentData(null);
+      }
     }
-    
-  }, [currentId,data]);
+
+  }, [currentId, data]);
 
   useEffect(() => {
-    if (currentData != null && currentData != undefined) {
-      setH(['h1','h2','h3','h4','h5','h6'].includes(currentData?.type));
+    if (currentData !== null || currentData !== undefined) {
+      setH(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(currentData?.type));
       setP(currentData?.type === 'p');
       setImg(currentData?.type === 'img');
       setA(currentData?.type === 'a');
       setDiv(currentData?.type === 'div');
-      setButton(['submit','reset','button'].includes(currentData?.type));
+      setButton(['submit', 'reset', 'button'].includes(currentData?.type));
       setDefaultMsg(
-        !['h1',,'h2','h3','h4','h5','h6', 'p', 'img','submit','reset', 'a', 'button',"div"].includes(currentData?.type)
+        !['h1', , 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'img', 'submit', 'reset', 'a', 'button', "div"].includes(currentData?.type)
+      );
+    }else{
+      setDefaultMsg(
+        true
       );
     }
   }, [currentData]);
-  
 
 
+  console.log("detail",currentData);
   return (
     <div className='custcom_edit'>
       <div style={{ float: 'left', width: '75%' }}>
         <iframe src={`http://localhost:3000/home?mobno=admin&enable=true`} title="Infinix" width="800" height="1000"></iframe>
       </div>
       <div style={{ float: 'right', width: '25%' }}>
-        <br/>
-        {H &&  <H_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {P && <P_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {Img && <Img_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {A && <A_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {Button && <Button_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
-        {Div &&  <Div_edit key={currentData.id} details={currentData} onDataUpdate={handleDataUpdate}/>}
+        <br />
+        {H && <H_edit key={currentData?.id} details={currentData} onDataUpdate={handleDataUpdate} />}
+        {P && <P_edit key={currentData?.id} details={currentData} onDataUpdate={handleDataUpdate} />}
+        {Img && <Img_edit key={currentData?.id} details={currentData} onDataUpdate={handleDataUpdate} />}
+        {A && <A_edit key={currentData?.id} details={currentData} onDataUpdate={handleDataUpdate} />}
+        {Button && <Button_edit key={currentData?.id} details={currentData} onDataUpdate={handleDataUpdate} />}
+        {Div && <Div_edit key={currentData?.id} details={currentData} onDataUpdate={handleDataUpdate} />}
         {DefaultMsg && <h1>DefaultMsg</h1>}
 
-       
+
       </div>
     </div>
   );

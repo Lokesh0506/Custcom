@@ -106,8 +106,7 @@ const ViewInventory = (props) => {
 
   const editable = (item) => {
     return (
-      <div>
-        <tr key={item.pid}>
+        <tr key={item.pid} className='edit'>
           <td>{item.pid}</td>
           <td>
             <input
@@ -138,11 +137,10 @@ const ViewInventory = (props) => {
             />
           </td>
           <td>
-            <input
-              type='text'
-              name={`${item.pid}_description`}
-              defaultValue={item.description}
-            />
+            <textarea 
+            name={`${item.pid}_description`}
+            defaultValue={item.desc} 
+            rows="4" cols="50" />
           </td>
           <td>
             <input
@@ -161,19 +159,19 @@ const ViewInventory = (props) => {
           {item.category === "books" && (
             <td>
               <input
+              type='text'
                 name={`${item.pid}_authorname`}
                 defaultValue={item.authorname}
               />
             </td>
           )}
           <td>
-            <button onClick={() => handleSubmit(item.pid, item.category,item)}>Save</button>
+            <button id="save" onClick={() => handleSubmit(item.pid, item.category,item)}>Save</button>
           </td>
           <td>
-            <button onClick={() => { setEdit(0) }}>Cancel</button>
+            <button id="cancel" onClick={() => { setEdit(0) }}>Cancel</button>
           </td>
         </tr>
-      </div>
     );
   }
   

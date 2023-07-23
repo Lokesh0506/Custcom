@@ -2,19 +2,27 @@
     height: 100px;
     width: 100px;
 }
-.inven_show table ,th,td{
+.inven_show th,td{
+
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(59, 59, 59, 0.425);
+    font-size: 15px;
+    margin-bottom: 10px;
+   
+}
+.inven_show table{
+    margin-left: 2%;
     border-collapse: collapse;
     padding: 10px;
     text-align: center;
     background-color: rgba(59, 59, 59, 0.425);
     font-size: 15px;
-
-}
-.inven_show table{
-    margin-left: 2%;
+    
+    
 }
 .inven_show th{
-    background-color: rgb(116, 112, 112);
+    background-color: rgba(11, 183, 240, 0.593);
     font-size: 20px;
     padding: 8px;
 }
@@ -27,7 +35,7 @@
 }
 
 .inven_show #edit {
-    background-color: #4CAF50;
+    background: linear-gradient(to top right,rgb(11, 245, 128) ,rgb(219, 128, 42));
     color: white;
     border: none;
     padding: 10px 15px;
@@ -46,7 +54,7 @@
   
 
 .inven_show  #delete {
-    background-color: #f44336;
+    background: linear-gradient(to top right,rgb(245, 11, 46) ,rgb(42, 219, 198));
     color: white;
     border: none;
     padding: 10px 15px;
@@ -71,7 +79,92 @@
     border: 2px solid rgb(46, 46, 46);
     border-radius: 10px;
     padding: 5px;
+    border: 5px solid black;
+    border-image:linear-gradient(to right, #0754ed 0%, #e368ec 100%);
+    border-image-slice:1;
+    margin-left: 2%;
   }
 
+  .edit input[type='text'], textarea{
+    background-color: transparent;
+    border: whitesmoke;
+    border-radius: 5px;
+    padding: 8px;
+    color: whitesmoke;
+    text-align: center;
+    width: fit-content;
+}
+
+.inven_show #save {
+    background: linear-gradient(to top right,rgb(0, 136, 255) ,pink);
+    color: white;
+    border: none;
+    padding: 10px 15px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+  }
   
+ .inven_show #save:hover {
+    background-color: #65afd1; 
+  }
+  
+
+.inven_show  #cancel {
+    background: linear-gradient(to top right,rgb(245, 11, 46) ,rgb(42, 219, 198));
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .inven_show #cancel:hover {
+    background-color: #d32f2f; 
+  }
+
+
+.inven_show input[type='file'] {
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 8px;
+    color: whitesmoke;
+    text-align: center;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.inven_show input[type='file']:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+}
+
+.inven_show input[type='file']::file-selector-button {
+    padding: 8px;
+    background: linear-gradient(252deg, #1b1bb6, #7830c0);
+    border: 1px solid rgba(255, 255, 255, .25);
+    color: white;
+    font-family: termina, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.inven_show input[type='file']::file-selector-button:hover {
+    box-shadow: #65afd1; 
+}
+
   

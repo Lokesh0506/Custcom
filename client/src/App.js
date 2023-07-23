@@ -32,7 +32,7 @@ console.log(data);
         <Route path="custcom/inventory" element={<InventoryTable/>} />
         <Route path="custcom/inventory/add" element={<AddInventory />} />
         <Route path="/home" element={<Home header_color={setDivColor(data,'homepage_header')} body_color={setDivColor(data,'homepage_body')} footer_color={setDivColor(data,'homepage_footer')} enableHover={true}/>} />
-        <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<Cart header_color={setDivColor(data,'cart_header')} body_color={setDivColor(data,'cart_body')} footer_color={setDivColor(data,'cart_footer')} enableHover={true}/>} />
         <Route path="/grocery" element={<Category category="grocery" bg_color={setDivColor(data,'grocery_body')} header_color={setDivColor(data,'grocery_header')} footer_color={setDivColor(data,'grocery_footer')} />} />
         <Route path="/electronic" element={<Category category="electronic" bg_color={setDivColor(data,'electronic_body')} header_color={setDivColor(data,'electronic_header')} footer_color={setDivColor(data,'electronic_footer')} />}/>
         <Route path="/books" element={<Category category="books" bg_color={setDivColor(data,'books_body')} header_color={setDivColor(data,'books_header')} footer_color={setDivColor(data,'books_footer')}/>} />

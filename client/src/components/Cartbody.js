@@ -3,23 +3,15 @@ import Axios from 'axios';
 import './cartbody.css';
 import { BUTTON ,H2} from './tags';
 import { setStylecart, setContent, setHref, setSrc,setSrcprod ,setStyle} from './dbfunctions';
+import { handleHover } from './tags';
 
 
 const Cartbody = (props) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{}]);
   const [totalBilling, setTotalBilling] = useState(0);
   const[add,callAdd]=useState(0);
   
-  useEffect(() => {
-    Axios.get('http://localhost:8080/cart')
-      .then(response => {
-        setData(response.data);
-        console.log(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+
  
  
 
@@ -27,7 +19,7 @@ const Cartbody = (props) => {
     Axios.get('http://localhost:8080/cart')
       .then(response => {
         setData(response.data);
-        
+        const cartStyle = response.data.cartStyle;
         const cartItems = response.data.cart;
         const totalPrice = cartItems.reduce((sum, item) => {
           const inventoryItem = response.data.inventory.find(i => i[0].pid === item.pid);
@@ -44,7 +36,7 @@ const Cartbody = (props) => {
       });
   }, [add]);
 
-console.log(data);
+
 
   const setSrcprod = (data, name, category) => {
     const element = data.find(obj => obj.pid === name);
@@ -98,8 +90,8 @@ function inputval(pid){
   }
 
 }
-
-/*const fontfetch = (data) => {
+console.log("data",data);
+const fontfetch = (data) => {
   const fontLinks = data.map((fontStyle) => {
     const { font_family } = fontStyle;
     if (font_family) {
@@ -111,10 +103,11 @@ function inputval(pid){
   });
 
   return fontLinks;
-};*/
-console.log(data);
+};
+
 return (
-  <div className='Cartpage'>
+  <div className='Cartpage' onDoubleClick={() => handleHover(`${props.category}_body`, props.enableHover)} style={{backgroundColor:props.bg_color}}>
+  
     
     {data.cart && data.cart.length > 0 && data.inventory && data.inventory.length > 0 && (
       <div>
@@ -132,14 +125,14 @@ return (
               <div key={pid} className='cartprd'>
                 <img src={setSrcprod(inventoryItem, pid, category)} alt={`${pid}-${index}`} />
                 <div className='cartcon'>
-                  <H2 id="pname" content={pname} style={setStylecart(data, 'pname')} />
-                  <H2 id="price" content={[<span>₹</span>, price]} style={setStylecart(data, 'price')} />
-                  <H2 id="author" content={authorname} style={setStylecart(data, 'author')} />
+                  <H2 enableHover={props.enableHover} id="pname" content={pname} style={setStylecart(data, 'pname')} />
+                  <H2 enableHover={props.enableHover} id="price" content={[<span>₹</span>, price]} style={setStylecart(data, 'price')} />
+                  <H2 enableHover={props.enableHover} id="author" content={authorname} style={setStylecart(data, 'author')} />
                 </div>
                 <div className='button-square'>
-                  <BUTTON id="cartbutton-" onClick={() => decrementQuantity(pid)} style={setStylecart(data, 'cartbutton-')} value="-" />
+                  <BUTTON enableHover={props.enableHover} id="cartbutton-" onClick={() => decrementQuantity(pid)} style={setStylecart(data, 'cartbutton-')} value="-" />
                   <input type='number' id={`texqan-${pid}`} defaultValue={quantity} onChange={() => inputval(pid)} />
-                  <BUTTON id="cartbuttonpos" onClick={() => incrementQuantity(pid)} style={setStylecart(data, 'cartbuttonpos')} value="+" />
+                  <BUTTON enableHover={props.enableHover} id="cartbuttonpos" onClick={() => incrementQuantity(pid)} style={setStylecart(data, 'cartbuttonpos')} value="+" />
                 </div>
               </div>
             );
