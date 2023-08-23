@@ -96,6 +96,8 @@ const H_edit = (props) => {
     const handlebgChange = (updatedColor) => {
         setBgColor(updatedColor.hex);
     };
+
+    
 console.log("color",setColorPickerVisible);
 console.log("bgcolor",setbgColorPickerVisible);
     return (
