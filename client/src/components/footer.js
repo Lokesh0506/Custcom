@@ -36,7 +36,7 @@ const Footer = (props) => {
     const st = { backgroundColor: props.bg_color };
 
     return (
-        <div style={st} className='footer' onDoubleClick={() => handleHover(`${props.category}_footer`, props.enableHover)}>
+        <div style={st} className='footer' id={props.className} onDoubleClick={() => handleHover(`${props.category}_footer`, props.enableHover)}>
             {fontfetch(data)}
             <P id="phone_no" enableHover={props.enableHover} content={"Phone: "+ setContent(data,"phone_no")} style={setStyle(data, 'phone_no')}/>
             <P id ="email" enableHover={props.enableHover} content="Email: " style={setStyle(data, 'email')}> <A href={"https://mail.google.com/mail/?view=cm&tf=0&to="+setHref(data, "email")} content={setContent(data, "email")} style={setStyle(data, 'email')}/></P>

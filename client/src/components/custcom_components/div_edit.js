@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ChromePicker } from 'react-color';
 import Axios from 'axios';
 import './tag_edit.css';
+import {changeBgcolor,changeColor,changeContent,changeFontsize,changeFontstyle} from './changefunc'
 
 const Div_edit = (props) => {
     const [data, setData] = useState({});
@@ -52,9 +53,11 @@ const Div_edit = (props) => {
     }
 }
 
-    const handlebgChange = (updatedColor) => {
-        setBgColor(updatedColor.hex);
-    };
+
+const handlebgChange = (updatedColor) => {
+    setBgColor(updatedColor.hex);
+    changeBgcolor(updatedColor.hex, data.id);
+};
 
     return (
         <div className='tag_edit'>

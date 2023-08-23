@@ -44,14 +44,14 @@ const PrdDiv = (props) => {
 
 <div className="prd_div">
   <div className="product-info">
-    <IMG id="prd_img"  style={setStyle(props.data , 'prd_img')} src={props.prd_img} />
+    <IMG id="prd_img" className="prd_img" style={setStyle(props.data , 'prd_img')} src={props.prd_img} />
     <div className="product-details">
-      <H2 id="prd_name" enableHover={props.enableHover} style={setStyle(props.data, 'prd_name')} content={props.prd_name} />
+      <H2 id="prd_name" className="prd_name" enableHover={props.enableHover} style={setStyle(props.data, 'prd_name')} content={props.prd_name} />
       <div className="price-section">
-        <P id="prd_price" enableHover={props.enableHover} style={setStyle(props.data, 'prd_price')} content={"₹"+props.prd_price} />
+        <P id="prd_price" className="prd_price" enableHover={props.enableHover} style={setStyle(props.data, 'prd_price')} content={"₹"+props.prd_price} />
         <div className="price-details">
-            <s><P id="prd_mrp" enableHover={props.enableHover} style={setStyle(props.data, 'prd_mrp')} content={"₹"+props.prd_mrp} /></s>
-            <P id="prd_offer" enableHover={props.enableHover} style={setStyle(props.data, 'prd_offer')} content={props.prd_offer+"%"} />
+            <s><P id="prd_mrp" className="prd_mrp" enableHover={props.enableHover} style={setStyle(props.data, 'prd_mrp')} content={"₹"+props.prd_mrp} /></s>
+            <P id="prd_offer" className="prd_offer" enableHover={props.enableHover} style={setStyle(props.data, 'prd_offer')} content={props.prd_offer+"%"} />
         </div>
       </div>
     </div>

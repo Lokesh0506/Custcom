@@ -124,7 +124,7 @@ function Custcomedit(props) {
   return (
     <div className='custcom_edit'>
       <div style={{ float: 'left', width: '75%' }}>
-        <iframe src={`http://localhost:3000/home?mobno=admin&enable=true`} title="Infinix" width="800" height="1000"></iframe>
+        <iframe src={`http://localhost:3000/home?mobno=admin&enable=true`} id="website" title="Infinix" width="800" height="1000"></iframe>
       </div>
       <div style={{ float: 'right', width: '25%' }}>
         <br/>

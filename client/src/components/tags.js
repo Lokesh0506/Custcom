@@ -11,48 +11,48 @@ const handleHover = (id,enable) => {
 
 const H1 = (props) => {
    return (
-        <h1 id={props.id} style={props.style} onClick={(e) => handleHover(e.target.id, props.enableHover)} >{props.content}</h1>
+        <h1 id={props.id} className={props.className} style={props.style} onClick={(e) => handleHover(e.target.id, props.enableHover)} >{props.content}</h1>
       )
 };
 
 const H2 = (props) => {
   return (
-       <h2 id={props.id} onClick={(e) => handleHover(e.target.id, props.enableHover)} style={props.style}>{props.content}</h2>
+       <h2 id={props.id} className={props.className}  onClick={(e) => handleHover(e.target.id, props.enableHover)} style={props.style}>{props.content}</h2>
   )
 };
 
 const H3 = (props) => {
   return (
-       <h3 id={props.id} onClick={(e) => handleHover(e.target.id, props.enableHover)} style={props.style}>{props.content}</h3>
+       <h3 id={props.id} className={props.className} onClick={(e) => handleHover(e.target.id, props.enableHover)} style={props.style}>{props.content}</h3>
        )
 };
 
 const P = (props) => {
   return (
-       <p id={props.id} onClick={(e) => handleHover(e.target.id, props.enableHover)} style={props.style}>{props.content}</p>
+       <p id={props.id} className={props.className} onClick={(e) => handleHover(e.target.id, props.enableHover)} style={props.style}>{props.content}</p>
      )
 };
 
 const A = (props) => {
   return (
-       <a id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} href={props.href} style={props.style}>{props.content}</a>
+       <a id={props.id} className={props.className} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} href={props.href} style={props.style}>{props.content}</a>
      )
 };
 const IMG = (props) => {
   return (
-       <img id={props.id} onClick={(e) => handleHover(e.target.id, props.enableHover)} src={props.src} style={props.style}/>
+       <img id={props.id} className={props.className} onClick={(e) => handleHover(e.target.id, props.enableHover)} src={props.src} style={props.style}/>
      )
 };
 
 const AIMG = (props) => {
   return (
-       <img id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} src={props.src} style={props.style}/>
+       <img id={props.id} className={props.className} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} src={props.src} style={props.style}/>
      )
 };
 
 const BUTTON = (props) => {
   return (
-       <button tagtype="button" id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} type={props.type}  onClick={props.onClick} style={props.style}>{props.value}</button>
+       <button tagtype="button" className={props.className} id={props.id} onMouseEnter={(e) => handleHover(e.target.id, props.enableHover)} type={props.type}  onClick={props.onClick} style={props.style}>{props.value}</button>
      )
 };
 

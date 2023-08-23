@@ -22,9 +22,9 @@ useEffect(() => {
  
   return (
     <div className="App">
-      <Header bg_color={props.header_color} category={"cart"} enableHover={enableHover}/>
-      <Cartbody category={"cart"} enableHover={enableHover} bg_color={props.body_color}/>
-      <Footer bg_color={props.footer_color} category={"cart"} enableHover={enableHover}/>
+      <Header bg_color={props.header_color} className="cart_header" category={"cart"} enableHover={enableHover}/>
+      <Cartbody category={"cart"}  className="cart_body" enableHover={enableHover} bg_color={props.body_color}/>
+      <Footer bg_color={props.footer_color} category={"cart"}  className="cart_footer" enableHover={enableHover}/>
     </div>
   );
 }

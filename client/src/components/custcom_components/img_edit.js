@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import './tag_edit.css';
+import {changeBgcolor,changeColor,changeContent,changeFontsize,changeFontstyle} from './changefunc'
 
 const Img_edit = (props) => {
     const [data, setData] = useState({});
