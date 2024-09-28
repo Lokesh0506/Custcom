@@ -78,6 +78,11 @@ function Custcomedit(props) {
 
   }, [currentId, data]);
 
+  /*useEffect(() => {
+  if(currentId!== null || currentId!==undefined ||currentId!==''||currentId!=='[object Object]'){
+   alert(currentId);}
+  }, [currentId]);*/
+
   useEffect(() => {
     if (currentData !== null || currentData !== undefined) {
       setH(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(currentData?.type));
@@ -121,6 +126,7 @@ function Custcomedit(props) {
       </div>
     );
   };
+
   return (
     <div className='custcom_edit'>
       <div style={{ float: 'left', width: '75%' }}>

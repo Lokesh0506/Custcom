@@ -84,10 +84,10 @@ const Body = (props) => {
     return fontLinks;
   };
 
-  
 
+  const st = { backgroundColor: props.bg_color };
   return (
-    <div onDoubleClick={() => handleHover(`${props.category}_body`, props.enableHover)}>
+    <div style={st} id={props.className} onDoubleClick={() => handleHover(`${props.category}_body`, props.enableHover)}>
       {fontfetch(data)}
       <IMG
         id= {`ad_ban${currentIndex + 1}`}

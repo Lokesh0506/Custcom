@@ -37,13 +37,13 @@ const Header = (props) => {
   const st = { backgroundColor: props.bg_color };
 
   return (
-    <div style={st} className='header' onDoubleClick={() => handleHover(`${props.category}_header`, props.enableHover)} >
+    <div style={st} className="header" id={props.className} onDoubleClick={() => handleHover(`${props.category}_header`, props.enableHover)} >
       {fontfetch(data)}
       <IMG enableHover={props.enableHover} id="logo" src={setSrc(data, 'logo')} style={setStyle(data, 'sub-title')} />
       <H1 id="title" enableHover={props.enableHover} content={setContent(data, 'title')} style={setStyle(data, 'title')} />
       
       <div className="nav">
-        <A id='home' href={`/home?enable=${props.enableHover}`} enableHover={props.enableHover} content={<AIMG enableHover={props.enableHover} id="home_img" src={setSrc(data, 'home_img')} />} style={setStyle(data, 'home')} />
+        <A id='home' href={`/home?enable=${props.enableHover}`}  content={<AIMG enableHover={props.enableHover} id="home_img" src={setSrc(data, 'home_img')} />} style={setStyle(data, 'home')} />
         <div className="category_div">
           <P id="category" className="category_a" enableHover={props.enableHover}  content={setContent(data, 'category')} style={setStyle(data, 'category')} />
           <div className="category_drpdwn">

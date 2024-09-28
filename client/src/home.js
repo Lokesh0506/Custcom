@@ -21,9 +21,9 @@ function Home(props) {
 
   return (
     <div className="App">
-      <Header bg_color={props.header_color} category="homepage" enableHover={enableHover} />
-      <Body bg_color={props.body_color} category="homepage" enableHover={enableHover} />
-      <Footer bg_color={props.footer_color} category="homepage" enableHover={enableHover} />
+      <Header bg_color={props.header_color} className="homepage_header" category="homepage" enableHover={enableHover} />
+      <Body bg_color={props.body_color} className="homepage_body" category="homepage" enableHover={enableHover} />
+      <Footer bg_color={props.footer_color} className="homepage_footer" category="homepage" enableHover={enableHover} />
     </div>
   );
 }

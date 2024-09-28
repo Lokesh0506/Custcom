@@ -132,7 +132,7 @@ const ViewInventory = (props) => {
             <input
               type='text'
               name={`${item.pid}_price`}
-              defaultValue={'₹'+item.price}
+              defaultValue={item.price}
             />
           </td>
           <td>

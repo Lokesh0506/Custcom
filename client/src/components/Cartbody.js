@@ -104,9 +104,8 @@ const fontfetch = (data) => {
 
   return fontLinks;
 };
-
 return (
-  <div className='Cartpage' onDoubleClick={() => handleHover(`${props.category}_body`, props.enableHover)} style={{backgroundColor:props.bg_color}}>
+  <div  id={props.className} className='Cartpage' onDoubleClick={() => handleHover(`${props.category}_body`, props.enableHover)} style={{backgroundColor:props.bg_color}}>
   
     
     {data.cart && data.cart.length > 0 && data.inventory && data.inventory.length > 0 && (

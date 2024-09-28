@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ChromePicker } from 'react-color';
 import Axios from 'axios';
 import './tag_edit.css';
+import {changeBgcolor,changeColor,changeContent,changeFontsize,changeFontstyle} from './changefunc'
 
 const P_edit = (props) => {
     const [data, setData] = useState({});
@@ -90,9 +91,11 @@ const P_edit = (props) => {
 
     const handlecolorChange = (updatedColor) => {
         setColor(updatedColor.hex);
+        changeColor(updatedColor.hex, data.id);
     };
     const handlebgChange = (updatedColor) => {
         setBgColor(updatedColor.hex);
+        changeBgcolor(updatedColor.hex, data.id);
     };
 
     return (
@@ -104,7 +107,7 @@ const P_edit = (props) => {
             <form name='p_edit'>
                 <label>Tag Type : {data.type}</label><br /><br/>
                 <label>Tag ID : {data.id}</label><br /><br/>
-                <label>Content : <input type='text' id='content' defaultValue={data.content} /></label><br /><br/>
+                <label>Content : <input type='text' id='content' onChange={(e)=>changeContent(e,data.id)} defaultValue={data.content} /></label><br /><br/>
                 <label>
                     Colour: <input type="text" id='color' value={color} onChange={(e) => setColor(e.target.value)}  onFocus={()=>{setColorPickerVisible("true");}} />
                     {colorPickerVisible==="true"  && <div className='colorpicker'><ChromePicker color={color} onChange={handlecolorChange} /></div>}
@@ -113,10 +116,10 @@ const P_edit = (props) => {
                     Background Colour : <input type='text' id='bg_color' defaultValue={bgcolor} onChange={(e) => setBgColor(e.target.value)} onFocus={()=>{setbgColorPickerVisible("true");}}  />
                     {bgcolorPickerVisible==="true" &&<div className='colorpicker'><ChromePicker color={bgcolor} onChange={handlebgChange} /></div>}
                 </label><br /><br/>
-                <label>Font Size : <input type='text' id='font_size' defaultValue={data.font_size} /></label><br /><br/>
+                <label>Font Size : <input type='text' id='font_size' onChange={(e)=>changeFontsize(e,data.id)} defaultValue={data.font_size} /></label><br /><br/>
                 <label>
                     Font Family:
-                    <select style={{ fontFamily: selectedFont }} value={selectedFont} id='font_family' onChange={handleFontChange}>
+                    <select style={{ fontFamily: selectedFont }} value={selectedFont} id='font_family' onChange={(e)=>{handleFontChange(e);changeFontstyle(e.target.value,data.id)}}>
                         <option value='sans-serif' style={{ fontFamily: 'sans-serif' }}>sans-serif</option>
                         {fontStyles.map((fontStyle) => (
                             <option key={fontStyle.family} style={{ fontFamily: fontStyle.family }} value={fontStyle.family}>

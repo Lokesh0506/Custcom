@@ -22,10 +22,10 @@ function Category(props) {
   }, []); 
   console.log("props",props.header_color);
   return (
-    <div style={{backgroundColor:props.bg_color}} className="App">
-      <Header bg_color={props.header_color} category={props.category} enableHover={enableHover}/>
+    <div style={{backgroundColor:props.bg_color}} className="App" id={`${props.category}_body`}>
+      <Header bg_color={props.header_color} className={`${props.category}_header`}category={props.category} enableHover={enableHover}/>
       <CategoryBody  category={props.category}  enableHover={enableHover}/>
-      <Footer bg_color={props.footer_color} category={props.category}  enableHover={enableHover}/>
+      <Footer bg_color={props.footer_color}  className={`${props.category}_footer`} category={props.category}  enableHover={enableHover}/>
     </div>
   );
 }
